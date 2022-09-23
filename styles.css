@@ -1,0 +1,681 @@
+/*--------------------------Login Page------------------------------*/
+.whole {
+  background: #48be9d;
+}
+
+/*-------------------------Signup Page------------------------------*/
+.err {
+  color: red;
+}
+
+.hg {
+  min-height: 753px;
+}
+
+/* ------------------------------Main css-------------------------- */
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+}
+
+/*---------------------------------- navbar css------------------------ */
+.Navbar-sec {
+  /* min-width: 980px; */
+  min-height: 8vh;
+  position: relative;
+  background: #48be9d;
+  top: 0;
+}
+
+.Navbar-inner {
+  font-size: 18px;
+  height: inherit;
+}
+
+.containeer {
+  padding: 12px 57px 9px 78px;
+}
+
+.logo {
+  float: left;
+  height: 6vh;
+}
+
+.logo-name {
+  font-weight: 600;
+  font-size: 20px;
+  display: inline;
+  margin-left: 5px;
+}
+
+.logo_icon {
+  height: 38px;
+  width: 40px;
+}
+
+.name-dropdown {
+  height: 6vh;
+  float: right;
+}
+
+.name {
+  transition: 0.6s;
+}
+
+.name:hover {
+  background: #48be9d;
+  color: #ffffff;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.name_logo {
+  height: 30px;
+  width: 33px;
+  border-radius: 12px;
+  margin-right: 6px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 25;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+@media screen and (max-height: 670px) {
+  .Navbar-sec {
+    min-height: 9vh;
+  }
+}
+
+@media screen and (max-height: 450px) {
+}
+
+@media screen and (max-width: 980px) {
+  .Navbar-inner {
+    font-size: 15px;
+    width: auto;
+  }
+
+  .containeer {
+    width: auto;
+    min-width: auto;
+    padding: 9px 23px 0px 69px;
+  }
+
+  /* .name-dropdown {
+      margin-right: auto;
+    } */
+  img {
+    height: 23px;
+    width: 30px;
+  }
+}
+
+/* ------------------------Left-Sidebar css------------------ */
+.col-lg-2 .col-sm-4 {
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+}
+
+/* .sidebar {
+     position: relative;
+     padding-top: 33px;
+     margin-left: -120px;
+     padding-right: 20px;
+     width: 350px;
+     z-index: 3;
+     float: left;
+     background-color: #D4ECDD;
+     height: 90vh;
+  } */
+.s-container {
+  padding: 10px 10px 10px 0;
+}
+
+.dashboard {
+  margin: 11px 0 0;
+  padding: 3px 8px 5px 0px;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: center;
+}
+
+.groups {
+  margin: 30px 0 0;
+  padding: 3px 8px 5px 0px;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: left;
+}
+
+.frnd_grp_img {
+  height: 30px;
+  width: 33px;
+  border-radius: 12px;
+  margin-right: 6px;
+}
+
+.groups-heading {
+  background-color: whitesmoke;
+}
+
+.name {
+  padding-left: 5px;
+}
+
+.link {
+  color: #000000;
+  text-decoration: none;
+  text-align: left;
+}
+
+.friends {
+  margin: 30px 0 0;
+  padding: 3px 8px 5px 0px;
+  font-size: 16px;
+  line-height: 21px;
+  text-align: left;
+}
+
+.add-button {
+  margin-left: 30%;
+  font-size: 14px;
+  border: black;
+  background-color: whitesmoke;
+}
+
+.add-button:hover {
+  color: #48be9d;
+}
+
+.friends-heading {
+  background-color: whitesmoke;
+}
+
+.unordered-list {
+  max-height: 120px;
+  overflow: hidden;
+  overflow-y: auto;
+  list-style-type: none;
+  padding-inline-start: 0px;
+  padding-left: 0;
+}
+
+.sidebar-heading {
+  background: #5bc5a7;
+  color: #fff;
+  border: 1px solid #39a385;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 3px 5px;
+  margin: 15px 0 0 0px;
+  text-shadow: 0 -1px 0 #3eaf8f;
+  text-align: center;
+}
+
+.sidebar_invites {
+  margin: 0 0 0 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 10px 5px 10px 5px;
+  text-align: center;
+}
+
+.invite_email {
+  width: 95%;
+  margin: 0 0 5px;
+}
+
+.send_invite {
+  font-size: 12px;
+  padding: 2px 6px;
+  border: none;
+  background-color: #48be9d;
+  color: #fff;
+  font-weight: bold;
+}
+
+.send_invite:hover {
+  cursor: pointer;
+}
+
+.error {
+  margin-bottom: 0;
+  color: red;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 430px) {
+  .unordered-list {
+    padding-left: 0;
+  }
+
+  .frnd_grp_img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .grouplist {
+    font-size: 13px;
+  }
+
+  .friendlist {
+    font-size: 13px;
+  }
+
+  .groups-heading {
+    text-align: center;
+  }
+
+  .add-button {
+    margin-left: 6%;
+  }
+
+  .friends-heading {
+    text-align: center;
+  }
+}
+
+/* --------------------Center Top css---------------------------- */
+.center {
+  padding: 0px;
+  border-left: 1px solid #dcdcdc;
+  border-right: 1px solid #dcdcdc;
+  box-shadow: 0 0 12px rgb(0 0 0 / 20%);
+  min-height: 92vh;
+}
+
+.topbar {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* height: 60px;
+      width: 840px; */
+  position: relative;
+  /* z-index: 9; */
+  background: #eee;
+  padding: 13px 10px 13px 10px;
+  /* margin-bottom: 20px; */
+  border-bottom: 1px solid black;
+}
+
+.dash {
+  margin-left: 10%;
+  font-size: 2rem;
+}
+
+.topbar .actions {
+  position: absolute;
+  top: 13px;
+  right: 50px;
+  display: inline-block;
+}
+
+.topbar .actions > a.btn,
+.topbar .actions > .btn-group {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.button-exp {
+  /* padding-left: auto;
+      margin-right: 10%; */
+  /* height: 35px; */
+  margin-bottom: 10px;
+}
+
+.button-settle {
+  /* margin-right: -200%; */
+  margin-left: 10px;
+  /* height: 35px; */
+  margin-bottom: 10px;
+}
+
+.total-info {
+  background: #eee;
+  padding: 5px 0;
+  font-size: medium;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+.owe-amt {
+  color: red;
+  font-weight: 500;
+}
+
+.owed-amt {
+  color: green;
+  font-weight: 500;
+}
+
+.mid-col {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.all-info-heading {
+  font-size: 1.5rem;
+  font-weight: 0;
+}
+
+/* .you-owe {
+      float:left;
+  }
+  
+  .you-are-owed {
+      float:right;
+  } */
+@media screen and (max-width: 520px) {
+  .topbar {
+    height: 100px;
+  }
+
+  .dash {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .topbar .actions {
+    top: 48px;
+    left: 45px;
+  }
+
+  .total-info {
+    font-size: x-small;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .topbar {
+    height: 100px;
+  }
+
+  .dash {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .topbar .actions {
+    top: 48px;
+    left: 30px;
+  }
+
+  .total-info {
+    font-size: x-small;
+  }
+}
+
+@media screen and (max-width: 325px) {
+  .topbar {
+    height: 100px;
+  }
+
+  .dash {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .topbar .actions {
+    top: 48px;
+    left: 10px;
+  }
+
+  .total-info {
+    font-size: x-small;
+  }
+}
+/*---------------------------Center Middle CSS-----------------------*/
+.all-info-heading {
+  text-align: center;
+  padding-top: 10px;
+  color: #999;
+}
+
+.you-owe {
+  border-right: 1px solid black;
+}
+
+/*--------------------------Center List CSS-------------------- */
+.list {
+  font-size: 20px;
+}
+
+.negative-col {
+  border-right: 1px solid black;
+  padding: 0;
+}
+
+.positive-col {
+  padding: 0;
+}
+
+.list-style-remover {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.list-item {
+  padding-left: 55px;
+}
+
+.list-item:hover {
+  background: #eee;
+}
+
+.list-img {
+  height: 45px;
+  width: 45px;
+  border-radius: 12px;
+  margin-right: 6px;
+}
+
+.list-name {
+  display: inline;
+  font-weight: 500;
+}
+
+.negative-amt {
+  color: red;
+  margin-left: 56px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-top: -7px;
+}
+
+.positive-amt {
+  color: green;
+  margin-left: 56px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-top: -7px;
+}
+
+/* -----------------------Right-sidebar css-------------------------- */
+.request-box {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.transaction-list {
+  padding-top: 6px;
+  max-height: fit-content;
+}
+
+.buttons-grp {
+  display: inline;
+  /* float: right; */
+}
+
+.btn-yes-no {
+  padding: 0 0.25rem;
+  vertical-align: initial;
+}
+
+/* --------------------------Modals css----------------------------- */
+
+/* Common CSS */
+
+.list_hovering :hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
+/* **********Expense modal****************  */
+.modalExp {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+#modal-h1 {
+  width: fit-content;
+  font-size: 25px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 #318a71;
+  color: white;
+}
+
+.modal-content {
+  margin: 15% auto;
+  /* padding: 5px 20px 20px 20px; */
+  border: 1px solid #888;
+  max-width: 320px;
+  display: block;
+}
+
+.closeBtn {
+  color: black;
+  width: max-content;
+  float: right;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.closeBtn:hover {
+  color: #888;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal_heading_custom {
+  display: flex;
+  justify-content: space-between;
+  background: #48be9d;
+  padding: 5px 20px 0px 20px;
+  border-bottom: 1px solid black;
+}
+
+.modal_content_custom {
+  padding: 10px;
+  max-height: 250px;
+  overflow-y: auto;
+  font-family: "Lato", sans-serif;
+}
+
+.modalFriends {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.all-people {
+  padding-left: 30px;
+}
+
+.input-area {
+  margin-top: 3px;
+  margin-bottom: 1px;
+}
+
+.currency {
+  display: inline-block;
+  width: auto;
+  min-width: 16px;
+  padding: 4px 5px;
+  font-weight: normal;
+  line-height: 18px;
+  text-align: center;
+  text-shadow: 0 1px 0 #ffffff;
+  background-color: #eeeeee;
+  border: 1px solid #ccc;
+  border-radius: 3px 0 0 3px;
+  margin-right: -1px;
+}
+
+.save-button {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/******** Expense Settle Modal CSS********* */
+
+.settle_list {
+  text-decoration: none;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  transition: 0.3s;
+}
+
+.settle_list li {
+  padding: 9px 9px 3px;
+  font-family: "Lato", sans-serif;
+}
+
+.modal_content_custom_settleup {
+  padding: 6px;
+}
+
+#content_settleUP {
+  text-align: center;
+}
+
+.who-to-whom {
+  padding: 10px 0px;
+}
+
+#amount_paid {
+  margin-bottom: 5px;
+}
