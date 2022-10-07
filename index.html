@@ -4,24 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>hospital website</title>
+    <title>User Dashboard</title>
     <!-- font awesome cdn link  -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />  
   </head>
   <body>
     <!-- header section starts  -->
     <header class="header">
-      <a href="#" class="logo"> <i class="fas fa-heartbeat"></i> File Mobility System </a>
+      <a href="#" class="logo">  File Mobility System </a>
       <nav class="navbar">
         <a href="#home">home</a>
+        <a href="#Profile">Profile</a>
         <a href="#application">application form</a>
         <a href="#status">view status</a>
         <a href="#about">about us</a>
+        
       </nav>
       <div id="menu-btn" class="fas fa-bars"></div>
     </header>
@@ -29,7 +31,7 @@
     <!-- home section starts  -->
     <section class="home" id="home">
       <div class="image">
-        <img src="./homee-img.png" alt="" />
+        <img src="satya.jpeg" alt="" />
       </div>
       <div class="content">
         <h3>feel free, now no queues</h3>
@@ -44,31 +46,26 @@
 
     <!-- home section ends -->
     <!--Profile section starts-->
-    <div class="profile">
-      <h1>Profile</h1>
-      <form>
-        <br>
-          <label >Name</label>
-          <input type="Name" placeholder="">
-        </br>
-        <br>
-          <label >Email</label>
-          <input type="email" placeholder="">
-        </br>
-        <br>
-          <label >Mobile No</label>
-          <input type="int" placeholder="">
-        </br>
-        <br>
-          <label >Date of Birth</label>
-          <input type="date" placeholder="">
-        </br>
-        <br>
-          <label >Photo</label>
-          <img src="" alt="" />
-       </br>
-      </form>
-  </div>
+    <section class="Profile" id="Profile">
+      <h1 class="heading"><span>Profile</span> </h1>
+
+      <div class="row">
+        <div class="image">
+          <!-- <img src="./book-img.svg" alt="" /> -->
+        </div>
+
+        <form action="">
+          <h3>Profile</h3>
+          <input type="text" placeholder="Your Name" class="box" />
+          <input type="number" placeholder="Your Number" class="box" />
+          <input type="email" placeholder="Your Email" class="box" />
+          <input type="date" class="box" />
+          
+        </form>
+      </div>
+    </section>
+
+    
     <!-- Profile section ends  -->
     <!-- about section starts  -->
 
@@ -77,7 +74,7 @@
 
       <div class="row">
         <div class="image">
-          <img src="./aboutt.jpeg" alt="" />
+          <img src="./aboutt.jpg" alt="" />
         </div>
 
         <div class="content">
@@ -110,9 +107,11 @@
         <div class="box">
           <h3>quick links</h3>
           <a href="#home"> <i class="fas fa-chevron-right"></i> home </a>
+          <a href="#status"> <i class="fas fa-chevron-right"></i> Profile </a>
           <a href="#about"> <i class="fas fa-chevron-right"></i> about us </a>
           <a href="#application"> <i class="fas fa-chevron-right"></i> application form </a>
           <a href="#status"> <i class="fas fa-chevron-right"></i> view status </a>
+      
         </div>
 
         
