@@ -77,15 +77,16 @@ app.post("/upload", upload.any(), async function (req, res) {
   try {
     const { body, files } = req;
     console.log(files);
+    const folderId = await createFolder('19ESKCS846')
     for (let f = 0; f < files.length; f += 1) {
       console.log("up");
-      const folderId = await createFolder('19ESKCS845')
+      
       console.log(folderId)
       await uploadFile(files[f],folderId);
       console.log("down");
     }
 
-    console.log(body);
+    console.log('Form Submitted');
     res.status(200).send("Form Submitted");
   } catch (f) {
     res.send(f.message);
