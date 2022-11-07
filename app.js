@@ -17,15 +17,15 @@ app.use(
 pool.connect();
 
 app.get("/officerlogin", function (req, res) {
-  res.render("officerlogin");
+  res.render("officerlogin",{danger:"none"});
 });
 
 app.get("/userlogin", function (req, res) {
-  res.render("userlogin");
+  res.render("userlogin",{danger:"none"});
 });
 
 app.get("/usersignup", function (req, res) {
-  res.render("usersignup");
+  res.render("usersignup",{danger:"none"});
 });
 
 app.get("/userdashboard", function (req, res) {
@@ -39,16 +39,24 @@ app.get("/officerdashboard", function (req, res) {
 app.post("/usersignup", function (req, res) {
   // console.log(req.body);
   const { firstName, lastname, mobileno, email, password } = req.body;
-  pool.query(
-    "INSERT INTO customer VALUES ($1, $2,$3,$4,$5,$6,$7) RETURNING *",
-    [uuidv4(), firstName, email, password, "{455555}", "1998-10-1", "M"],
-    (error, results) => {
-      if (error) {
-        throw error;
+  pool.query("SELECT * from customer where email=$1", [email], (err, result) => {
+    if(err) res.render("usersignup",{danger:"block"});
+    else{
+      if(result.rows.length) res.render("usersignup",{danger:"block"});
+      else {
+        pool.query(
+          "INSERT INTO customer VALUES ($1, $2,$3,$4,$5,$6,$7,$8) RETURNING *",
+          [uuidv4(), firstName, email, password,mobileno, "{455555}", "1998-10-1", "M"],
+          (error, results) => {
+            if (error) {
+              throw error;
+            }
+            res.redirect("/userdashboard");
+          }
+        );
       }
-      res.redirect("/userdashboard");
     }
-  );
+  })
 });
 
 app.post("/userlogin", function (req, res) {
@@ -58,11 +66,12 @@ app.post("/userlogin", function (req, res) {
     "Select * from customer where email=$1",
     [email],
     (err, result) => {
-      if (err) console.log(err);
+      if (err) res.render("userlogin",{danger:"block"});
       else {
-        console.log(result);
-        if (result.rows[0].password == password) res.redirect("/userdashboard");
-        else console.log("Password Incorrect!!");
+        // console.log(result);
+        if(!result.rows.length) res.render("userlogin",{danger:"block"});
+        else if (result.rows[0].password == password) res.redirect("/userdashboard");
+        else res.render("userlogin",{danger:"block"});
       }
     }
   );
@@ -76,12 +85,13 @@ app.post("/officerlogin", function (req, res) {
     [username],
     (err, result) => {
       if (err) {
-        console.log(err);
+        res.render("officerlogin",{danger:"block"});
       } else {
         // console.log(result);
-        if (result.rows[0].password == password) {
+        if(!result.rows.length) res.render("officerlogin",{danger:"block"});
+        else if (result.rows[0].password == password) {
           res.redirect("/officerdashboard");
-        } else console.log("password not correct!!");
+        } else res.render("officerlogin",{danger:"block"});
       }
     }
   );

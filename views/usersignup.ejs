@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
+<%- include('partials/header') %>
     <div id="bg"></div>
     <form action="/usersignup" method="post">
       <div class="form-field-name">
@@ -15,13 +8,16 @@
         <input type="var" name="lastName" placeholder="Last Name" required />
       </div>
       <div class="form-field">
-        <input type="tel" name="phone" placeholder="Mobile No" required />
+        <input type="tel" name="mobileno" placeholder="Mobile No" required />
       </div>
       <div class="form-field">
         <input type="email" name="email" placeholder="Email / Username" required />
       </div>
       <div class="form-field">
         <input type="password" name="password" placeholder="Password" required />
+      </div>
+      <div>
+        <p class="mb-0 err" style="display:<%=danger%>">User Already exist!! Please login..</p>
       </div>
       <div class="signing">
         <p>Already have a account? <a href="/userlogin"> Log In</a></p>
@@ -32,5 +28,4 @@
         </button>
       </div>
     </form>
-  </body>
-</html>
+    <%- include('partials/footer') %>
