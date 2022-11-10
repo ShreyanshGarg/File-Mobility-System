@@ -10,8 +10,11 @@
   <div class="form-field">
     <input type="password" name="password" placeholder="Password" required />
   </div>
+  <div>
+    <p class="mb-0 err" style="display:<%=danger%>">Invalid Username or Password! Try Again</p>
+  </div>
   <div class="signing">
-    <p>Not a member? <a href="user-signup.html"> Sign Up</a></p>
+    <p>Not a member? <a href="/usersignup"> Sign Up</a></p>
   </div>
   <div class="form-field">
     <button class="btn" type="submit">Log in</button>
