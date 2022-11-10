@@ -6,7 +6,7 @@
   </head>
 
   <body>
-    <form>
+    <form method="post" action="/upload" enctype="multipart/form-data">
       <input type="file" name="Files" required multiple />
       <input type="file" name="Files" required  />
       <input type="file" name="Files" required  />
@@ -17,7 +17,7 @@
     </form>
   </body>
 
-  <script>
+  <!-- <script>
     const formElem = document.querySelector("form");
     formElem.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -27,5 +27,5 @@
         body: new FormData(formElem),
       });
     });
-  </script>
+  </script> -->
 </html>

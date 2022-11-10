@@ -1,20 +1,9 @@
-const express = require("express");
-const bodyParser = require("body-parser");
 require("dotenv").config({ path: "config/dev.env" });
-const drive = require('./service');
 const stream = require("stream");
-const app = express();
 const multer = require("multer");
 const upload = multer();
 const { google } = require("googleapis");
 const {GoogleAuth} = require('google-auth-library');
-app.use(express.static("public"));
-app.set("view engine", "ejs");
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
 
 const auth = new GoogleAuth({
   keyFile: 'fms_certi.json',
@@ -70,29 +59,4 @@ const uploadFile = async (fileObject,folderId)=>{
 
 }
 
-app.get("/", (_, res) => {
-  res.render("application");
-});
-app.post("/upload", upload.any(), async function (req, res) {
-  try {
-    const { body, files } = req;
-    console.log(files);
-    const folderId = await createFolder('19ESKCS846')
-    for (let f = 0; f < files.length; f += 1) {
-      console.log("up");
-      
-      console.log(folderId)
-      await uploadFile(files[f],folderId);
-      console.log("down");
-    }
-
-    console.log('Form Submitted');
-    res.status(200).send("Form Submitted");
-  } catch (f) {
-    res.send(f.message);
-  }
-});
-
-app.listen(3000, () => {
-  console.log("Form running on port 3000");
-});
+module.exports = {createFolder,uploadFile};
