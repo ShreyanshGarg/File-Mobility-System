@@ -1,4 +1,53 @@
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sign Up</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="css/nunito-font.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="/css/user-signup.css"/>
+</head>
+<body class="form-v6">
+	<div class="page-content">
+		<div class="form-v6-content">
+			<div class="form-left">
+				<img src="/images/ashok.jpg" alt="form" style="height: -webkit-fill-available;">
+			</div>
+			<form class="form-detail" action="/usersignup" method="post">
+				<h2>Sign Up</h2>
+        <div class="form-row">
+          <input type="text" name="firstname" placeholder="First Name" required />
+        </div>
+        <div class="form-row">
+          <input type="text" name="lastName" placeholder="Last Name" required />
+        </div>
+        <div class="form-row">
+          <input type="tel" name="mobileno" placeholder="Mobile No" required />
+        </div>
+				<div class="form-row">
+					<input type="text" name="email" id="your-email" class="input-text" placeholder="Email Address" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}">
+				</div>
+				<div class="form-row">
+					<input type="password" name="password" id="password" placeholder="Password" required>
+				</div>
+        <div>
+          <p class="mb-0 err" style="display:<%=danger%>">User already exists!!</p>
+        </div>  
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Sign Up">
+				</div>
+        <div class="signing">
+          <p>Already have an account? <a href="/userlogin"> Log In</a></p>
+        </div>
+			</form>
+		</div>
+	</div>
+</body></html>
+
+<!-- <%- include('partials/header') %>
     <div id="bg"></div>
     <form action="/usersignup" method="post">
       <div class="form-field-name">
@@ -28,4 +77,4 @@
         </button>
       </div>
     </form>
-    <%- include('partials/footer') %>
+    <%- include('partials/footer') %> -->

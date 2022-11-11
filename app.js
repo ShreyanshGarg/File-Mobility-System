@@ -80,7 +80,7 @@ app.post("/userlogin", function (req, res) {
     (err, result) => {
       if (err) res.render("userlogin",{danger:"block"});
       else {
-        // console.log(result);
+        console.log(result);
         if(!result.rows.length) res.render("userlogin",{danger:"block"});
         else if (result.rows[0].password == password) res.redirect("/userdashboard");
         else res.render("userlogin",{danger:"block"});
@@ -122,43 +122,43 @@ app.post("/upload", upload.any(), async function (req, res) {
     }
 
     console.log('Form Submitted');
-
-    let applicationNo = Math.floor(100000000 + Math.random() * 900000000);
-    var str = '' + applicationNo;
-    while (str.length < 10) {
-        str = '0' + str;
-    }
-    applicationNo = parseInt(str);
-    const date = new Date();
-    console.log(applicationNo);
-    pool.query(
-      "INSERT INTO application VALUES ($1, $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,19,$20,$21,$22) RETURNING *",
-      [applicationNo,date,seller_name,seller_fname,
-        seller_age,
-        seller_house_no,
-        seller_addressline1,
-        seller_addressline2,
-        seller_email,
-        seller_photo,
-        seller_aadhar,
-        seller_pan,
-        buyer_name,
-        buyer_fname,
-        buyer_age,
-        buyer_house_no,
-        buyer_addressline1,
-        buyer_addressline2,
-        buyer_email,
-        buyer_photo,
-        buyer_aadhar,
-        buyer_pan],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        res.redirect("/");
-      }
-    );
+    res.redirect("/");
+    // let applicationNo = Math.floor(100000000 + Math.random() * 900000000);
+    // var str = '' + applicationNo;
+    // while (str.length < 10) {
+    //     str = '0' + str;
+    // }
+    // applicationNo = parseInt(str);
+    // const date = new Date();
+    // console.log(applicationNo);
+    // pool.query(
+    //   "INSERT INTO application VALUES ($1, $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,19,$20,$21,$22) RETURNING *",
+    //   [applicationNo,date,seller_name,seller_fname,
+    //     seller_age,
+    //     seller_house_no,
+    //     seller_addressline1,
+    //     seller_addressline2,
+    //     seller_email,
+    //     seller_photo,
+    //     seller_aadhar,
+    //     seller_pan,
+    //     buyer_name,
+    //     buyer_fname,
+    //     buyer_age,
+    //     buyer_house_no,
+    //     buyer_addressline1,
+    //     buyer_addressline2,
+    //     buyer_email,
+    //     buyer_photo,
+    //     buyer_aadhar,
+    //     buyer_pan],
+    //   (error, results) => {
+    //     if (error) {
+    //       throw error;
+    //     }
+    //     res.redirect("/");
+    //   }
+    // );
     // console.log("Not redirecting");
   } catch (f) {
     res.send(f.message);
