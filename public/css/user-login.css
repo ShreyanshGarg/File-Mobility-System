@@ -1,9 +1,54 @@
-body {
-    overflow: hidden;
-    display: flex;
-    margin: 0; 
+@import url('https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;600&display=swap');
+*{
+    margin: 00;
     padding: 0;
-  }
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+	overflow: hidden;
+}
+
+  .header{
+    padding:2rem 4%;
+    height: 5%;
+    position: fixed;
+    top:0; left: 0; right: 0;
+    z-index: 100;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff; 
+}
+
+.header .navbar a{
+    color: var(--light-color);
+    margin-left: 2rem;
+	text-decoration: none;
+}
+
+.header .navbar a:hover{
+    color: var(--green);
+}
+
+#menu-btn{
+    font-size: 2.5rem;
+    border-radius: .5rem;
+    background: #eee;
+    color:var(--green);
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
 .page-content {
 	width: 100%;
 	margin:  0 auto;
@@ -30,7 +75,7 @@ body {
 	-ms-border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
-	margin: 6% 0;
+	margin: 135px 0px 61px 0px;
 	font-family: 'Nunito', sans-serif;
 	color: #fff;
 	font-weight: 700;
@@ -48,7 +93,6 @@ body {
 .form-v6-content .form-detail {
     padding: 30px 40px;
 	position: relative;
-	width: 40%;
 }
 .form-v6-content .form-detail h2 {
 	color: #333;
@@ -140,7 +184,7 @@ form .signing{
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;

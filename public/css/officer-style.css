@@ -11,7 +11,7 @@ body{
     display: flex;
     justify-content: left;
     align-items: center;
-    font-family: cursive;
+    font-family: 'Poppins', sans-serif;
     background-color: #fff;
 }
 .header{
