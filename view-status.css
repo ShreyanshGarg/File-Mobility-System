@@ -10,9 +10,9 @@ body{
     display: flex;
     justify-content: left;
     align-items: center;
-    font-family: cursive;
-    /* background-color: #fff; */
-    background-color: #e5e5e5;
+    font-family: "Lato", sans-serif;
+    overflow: hidden;
+
 }
 .header{
     padding:2rem 1.5%;
@@ -33,7 +33,8 @@ body{
     font-size: 16px;
     border: none;
     cursor: pointer;
-    font-family: cursive;
+    font-family: "Lato", sans-serif;
+
   }
   .profile {
     position: relative;
@@ -68,7 +69,7 @@ body{
   z-index: 1; /* Stay on top */
   top: 55px;
   left: 0;
-  background-color: #fff; /* Black*/
+  background-color: #f0eedc; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 200px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
@@ -120,7 +121,7 @@ body{
   /* padding:5px; */
   background-color: #fff;
   width:71%;
-  height: 75%;
+  /* height: 75%; */
   overflow: auto;
   border-radius: 0px;
   text-align:justify;
@@ -150,5 +151,91 @@ body{
     width: 100%;
     padding-right: 53px;
     padding-top: 39px;
+    display: none;
 }
 
+
+/* Application form css */
+
+.pannel-body{
+  padding: 20px;
+  width: 100%;
+}
+.row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.form-group {
+margin-bottom: 20px;
+}
+.text-danger{
+color: #D84315;
+}
+/* .application-form{
+margin-top: 16%;
+margin-left: 12%;
+} */
+.field-title{
+display: flex;
+}
+.light-bg {
+background: #f0eedc;
+}
+.application-form{
+  position: relative;
+  width: 76%;
+  margin-left: 20%;
+  margin-top: 2%;
+  height: 37%;
+  overflow-x: hidden;
+}
+.photo-upload{
+  margin-top: 28px;
+}
+
+.heading-card2{
+  margin-top: 20px;
+}
+h5{
+  text-decoration: underline;
+}
+.row{
+  margin-top: 3px;
+}
+input{
+      text-decoration: none;
+      border: 0px;
+      border-radius: 5px;
+}
+input:focus {
+  outline: none !important;
+  border:1px solid azure;
+  box-shadow: 0 0 10px #719ECE;
+}
+.submit-btn{
+  width:120px;
+}
+.submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 14px;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  background-color:darkblue;
+  color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+}
+.btn:hover{
+  border:1px solid darkblue;
+}
