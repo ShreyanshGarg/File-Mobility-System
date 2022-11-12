@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;600&display=swap');
+*{
+    margin: 00;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: "Lato", sans-serif;
+    overflow: hidden;
+
+}
+.header{
+    padding:2rem 1.5%;
+    height: 5%;
+    /* position: fixed; */
+    top:0; left: 0; right: 0;
+    z-index: 100;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff; 
+}
+.dropbtn {
+    background-color: #fff;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-family: "Lato", sans-serif;
+
+  }
+  .profile {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+  }
+  .dropdown-content a:hover {
+    background-color: #e5e5e5;}
+  .profile:hover .dropdown-content {
+    display: block;
+  }
+  .profile:hover .dropbtn {
+    background-color:#e5e5e5;
+  }
+/* The sidepanel menu */
+.sidepanel {
+  height: 100%; /* Specify a height */
+  width: 18%;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 55px;
+  left: 0;
+  background-color: #f0eedc; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 200px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* The sidepanel links */
+.sidepanel a {
+  padding: 8px 0px 8px 20px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+  /* margin-top: -39.5%; */
+  /* position: fixed; */
+  font-size: 20px;
+  cursor: pointer;
+  background-color:#fff;
+  color: black;
+  /* padding: 10px 15px; */
+  border: none;
+  font-family: cursive;
+  height: 62px;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+.subcards {
+  /* margin:15px; */
+  /* padding:5px; */
+  background-color: #fff;
+  width:71%;
+  /* height: 75%; */
+  overflow: auto;
+  border-radius: 0px;
+  text-align:justify;
+  /* margin-top: -25%; */
+  margin-left: 20%;
+  /* margin-right: 10%; */
+  margin-bottom: 29px;
+}
+.status-card{
+  margin: 15px;
+  height: 100%;
+}
+
+.wrapper{
+  display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.main-body{
+  display: flex;
+    position: relative;
+    flex-direction: row;
+}
+.card-wrapper{
+  position: relative;
+    width: 100%;
+    padding-right: 53px;
+    padding-top: 39px;
+    display: none;
+}
+
+
+/* Application form css */
+
+.pannel-body{
+  padding: 20px;
+  width: 100%;
+}
+.row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.form-group {
+margin-bottom: 20px;
+}
+.text-danger{
+color: #D84315;
+}
+/* .application-form{
+margin-top: 16%;
+margin-left: 12%;
+} */
+.field-title{
+display: flex;
+}
+.light-bg {
+background: #f0eedc;
+}
+.application-form{
+  position: relative;
+  width: 76%;
+  margin-left: 20%;
+  margin-top: 2%;
+  height: 37%;
+  overflow-x: hidden;
+}
+.photo-upload{
+  margin-top: 28px;
+}
+
+.heading-card2{
+  margin-top: 20px;
+}
+h5{
+  text-decoration: underline;
+}
+.row{
+  margin-top: 3px;
+}
+input{
+      text-decoration: none;
+      border: 0px;
+      border-radius: 5px;
+}
+input:focus {
+  outline: none !important;
+  border:1px solid azure;
+  box-shadow: 0 0 10px #719ECE;
+}
+.submit-btn{
+  width:120px;
+}
+.submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 14px;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  background-color:darkblue;
+  color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+}
+.btn:hover{
+  border:1px solid darkblue;
+}
