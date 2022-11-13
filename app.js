@@ -5,7 +5,9 @@ const pool = require("./queries");
 const { v4: uuidv4 } = require("uuid");
 const multer = require("multer");
 const upload = multer();
-const {createFolder, uploadFile} = require("./test")
+const {createFolder, uploadFile} = require("./test");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const app = express();
 
@@ -41,7 +43,7 @@ app.get("/usersignup", function (req, res) {
 });
 
 app.get("/userdashboard", function (req, res) {
-  res.render("application");
+  res.render("application",{formOrStatus:0});
 });
 
 app.get("/officerdashboard", function (req, res) {
@@ -50,7 +52,13 @@ app.get("/officerdashboard", function (req, res) {
 
 app.post("/usersignup", function (req, res) {
   // console.log(req.body);
-  const { firstName, lastname, mobileno, email, password } = req.body;
+  const { firstName, lastName, mobileno, email, password } = req.body;
+  let hashedPassword='';
+  bcrypt.hash(password, saltRounds, function(err, hash) {
+    // Store hash in your password DB.
+    hashedPassword=hash;
+});
+console.log(hashedPassword);
   pool.query("SELECT * from customer where email=$1", [email], (err, result) => {
     if(err) res.render("usersignup",{danger:"block"});
     else{
@@ -58,7 +66,7 @@ app.post("/usersignup", function (req, res) {
       else {
         pool.query(
           "INSERT INTO customer VALUES ($1, $2,$3,$4,$5,$6,$7,$8) RETURNING *",
-          [uuidv4(), firstName, email, password,mobileno, "{455555}", "1998-10-1", "M"],
+          [uuidv4(), firstName, email, hashedPassword,mobileno, "{455555}", "1998-10-1", "M"],
           (error, results) => {
             if (error) {
               throw error;
@@ -82,8 +90,12 @@ app.post("/userlogin", function (req, res) {
       else {
         console.log(result);
         if(!result.rows.length) res.render("userlogin",{danger:"block"});
-        else if (result.rows[0].password == password) res.redirect("/userdashboard");
-        else res.render("userlogin",{danger:"block"});
+        else {
+          bcrypt.compare(password, result.rows[0].password, function(err, result) {
+            if(result) res.redirect("/userdashboard");
+            else res.render("userlogin",{danger:"block"});
+          });
+        }
       }
     }
   );
@@ -150,7 +162,7 @@ app.post("/upload", upload.any(), async function (req, res) {
         if (error) {
           throw error;
         }
-        res.redirect("/");
+        res.render("application",{formOrStatus:1});
       }
     );
 

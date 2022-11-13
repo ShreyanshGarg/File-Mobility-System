@@ -31,26 +31,29 @@
         <a href="#" onclick="openForm()">Application Form</a>
         <a href="#" onclick="openStatus()">View Status</a>
     </div>
+    
+
+
     <div class="card-wrapper">
-    <div class="subcards">
-        <div class="card">
-            <h3>Application no</h3>
-            <p>Some text</p>
-          </div>
+        <div class="subcards">
+            <div class="card">
+                <h3>Application no</h3>
+                <p>Some text</p>
+              </div>
+            </div>
+        <div class="subcards">
+            <div class="card">
+                <h3>Application no</h3>
+                <p>Some text</p>
+              </div>
         </div>
-    <div class="subcards">
-        <div class="card">
-            <h3>Application no</h3>
-            <p>Some text</p>
-          </div>
+        <div class="subcards">
+            <div class="card">
+                <h3>Application no</h3>
+                <p>Some text</p>
+              </div>
+        </div>
     </div>
-    <div class="subcards">
-        <div class="card">
-            <h3>Application no</h3>
-            <p>Some text</p>
-          </div>
-    </div>
-</div>
 
 <form class="application-form" action="/upload" method="post" enctype="multipart/form-data">
     <!-- Card 1 -->
@@ -382,6 +385,10 @@
 </div>
 </div>
     <script src="/view-status.js"></script>
+    <script>
+        if(<%=formOrStatus%>) openStatus();
+        else openForm();
+    </script>
 </body>
 </html>
 
