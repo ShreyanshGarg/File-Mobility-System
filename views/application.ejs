@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="wrapper">
-    <header class="header">File Mobility System
+    <header class="header logo">File Mobility System
         <div class="profile">
             <i class="fa fa-user"></i>
             <button class="dropbtn">Username</button>
@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<form class="application-form" action="/upload" method="post">
+<form class="application-form" action="/upload" method="post" enctype="multipart/form-data">
     <!-- Card 1 -->
     <div class="heading">
         <h4>Seller Details</h4>
@@ -65,15 +65,15 @@
                         <label class="field-title">Name
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="sellerName" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label class="field-title">Father's Name
+                        <label class="field-title" >Father's Name
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="sellerFatherName" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -81,11 +81,23 @@
                         <label class="field-title">Age
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="number" required>
+                        <input type="number" name="sellerAge" required>
                     </div>
                 </div>
                 
             </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="email" name="sellerEmail" required>
+                    </div>
+                </div>
+            </div>
+
             <h5>Address Details</h5>
             <div class="row">
                 <div class="col-sm-4">
@@ -93,7 +105,7 @@
                         <label class="field-title">House No
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="sellerHouseNo" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -101,7 +113,7 @@
                         <label class="field-title">Address Line1
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="sellerAddressLine1" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -109,7 +121,7 @@
                         <label class="field-title">Address Line2
                             <!-- <span class="text-danger">*</span> -->
                         </label>
-                        <input type="text">
+                        <input type="text" name="sellerAddressLine2">
                     </div>
                 </div>
                 
@@ -120,7 +132,7 @@
                         <label class="field-title">City
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="sellerCity" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -128,7 +140,7 @@
                         <label class="field-title">Pincode
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="number" required>
+                        <input type="number" name="sellerPincode" required>
                     </div>
                 </div>
                 
@@ -140,7 +152,7 @@
                         <label class="field-title">Aadhar card Number
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="sellerAadharCard" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -148,7 +160,7 @@
                         <label class="field-title">Pan Card Number
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="sellerPanCard" required>
                     </div>
                 </div>
                 
@@ -180,7 +192,7 @@
                         <label class="field-title">Name
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="buyerName" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -188,7 +200,7 @@
                         <label class="field-title">Father's Name
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="buyerFatherName" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -196,11 +208,23 @@
                         <label class="field-title">Age
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="number" required>
+                        <input type="number" name="buyerAge" required>
                     </div>
                 </div>
                 
             </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="email" name="buyerEmail" required>
+                    </div>
+                </div>
+            </div>
+
             <h5>Address Details</h5>
             <div class="row">
                 <div class="col-sm-4">
@@ -208,7 +232,7 @@
                         <label class="field-title">House No
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="buyerHouseNo" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -216,15 +240,14 @@
                         <label class="field-title">Address Line1
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="buyerAddressLine1" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label class="field-title">Address Line2
-                            <!-- <span class="text-danger">*</span> -->
                         </label>
-                        <input type="number">
+                        <input type="number" name="buyerAddressLine2">
                     </div>
                 </div>
                 
@@ -235,7 +258,7 @@
                         <label class="field-title">City
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="buyerCity" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -243,7 +266,7 @@
                         <label class="field-title">Pincode
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="number" required>
+                        <input type="number" name="buyerPincode" required>
                     </div>
                 </div>
                 
@@ -255,7 +278,7 @@
                         <label class="field-title">Aadhar card Number
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="buyerAadharCard" required>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -263,7 +286,7 @@
                         <label class="field-title">Pan Card Number
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" required>
+                        <input type="text" name="buyerPanCard" required>
                     </div>
                 </div>
                 

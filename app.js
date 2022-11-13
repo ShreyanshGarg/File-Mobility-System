@@ -113,7 +113,13 @@ app.post("/upload", upload.any(), async function (req, res) {
   try {
     const { body, files } = req;
     console.log(files);
-    const folderId = await createFolder(body.Name);
+    let applicationNo = Math.floor(100000000 + Math.random() * 900000000);
+    var str = '' + applicationNo;
+    while (str.length < 10) {
+        str = '0' + str;
+    }
+    applicationNo = parseInt(str);
+    const folderId = await createFolder(applicationNo);
     for (let f = 0; f < files.length; f += 1) {
       // console.log("up");
       // console.log(folderId)
