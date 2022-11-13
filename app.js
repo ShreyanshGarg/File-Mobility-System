@@ -112,60 +112,48 @@ app.post("/officerlogin", function (req, res) {
 app.post("/upload", upload.any(), async function (req, res) {
   try {
     const { body, files } = req;
-    console.log(files);
+    
+    // creating application no and date
     let applicationNo = Math.floor(100000000 + Math.random() * 900000000);
     var str = '' + applicationNo;
     while (str.length < 10) {
         str = '0' + str;
     }
     applicationNo = parseInt(str);
+    const date = new Date();
+    console.log(date);
+
+    // passing application no as folder name on google drive
     const folderId = await createFolder(applicationNo);
+
+    // file array of all fileId
+    let fileArr = [];
     for (let f = 0; f < files.length; f += 1) {
-      // console.log("up");
-      // console.log(folderId)
-      await uploadFile(files[f],folderId);
-      // console.log("down");
+      fileArr.push(await uploadFile(files[f],folderId));
     }
 
-    console.log('Form Submitted');
-    res.redirect("/");
-    // let applicationNo = Math.floor(100000000 + Math.random() * 900000000);
-    // var str = '' + applicationNo;
-    // while (str.length < 10) {
-    //     str = '0' + str;
-    // }
-    // applicationNo = parseInt(str);
-    // const date = new Date();
-    // console.log(applicationNo);
-    // pool.query(
-    //   "INSERT INTO application VALUES ($1, $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,19,$20,$21,$22) RETURNING *",
-    //   [applicationNo,date,seller_name,seller_fname,
-    //     seller_age,
-    //     seller_house_no,
-    //     seller_addressline1,
-    //     seller_addressline2,
-    //     seller_email,
-    //     seller_photo,
-    //     seller_aadhar,
-    //     seller_pan,
-    //     buyer_name,
-    //     buyer_fname,
-    //     buyer_age,
-    //     buyer_house_no,
-    //     buyer_addressline1,
-    //     buyer_addressline2,
-    //     buyer_email,
-    //     buyer_photo,
-    //     buyer_aadhar,
-    //     buyer_pan],
-    //   (error, results) => {
-    //     if (error) {
-    //       throw error;
-    //     }
-    //     res.redirect("/");
-    //   }
-    // );
-    // console.log("Not redirecting");
+    // fetching data from req.body
+    let {sellerName, sellerFatherName, sellerAge, sellerEmail, sellerHouseNo, sellerAddressLine1, sellerAddressLine2, sellerCity, sellerPincode, sellerAadharCard, sellerPanCard, 
+     buyerName, buyerFatherName, buyerAge, buyerEmail, buyerHouseNo, buyerAddressLine1, buyerAddressLine2, buyerCity, buyerPincode, buyerAadharCard, buyerPanCard} = body;
+
+    let sellerAddress = sellerHouseNo + ", " + sellerAddressLine1 + " " + sellerAddressLine2 + ", " + sellerCity + " (" + sellerPincode + ")";
+    let buyerAddress = buyerHouseNo + ", " + buyerAddressLine1 + " " + buyerAddressLine2 + ", " + buyerCity + " (" + buyerPincode + ")";
+
+    console.log('File pushed on google drive');
+
+    // insert application data into the database
+    pool.query(
+      "INSERT INTO application VALUES ($1, $2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17) RETURNING *",
+      [applicationNo,date,sellerName,sellerFatherName,sellerAge,sellerAddress,sellerEmail,sellerAadharCard,sellerPanCard,
+       buyerName,buyerFatherName,buyerAge,buyerAddress,buyerEmail,buyerAadharCard,buyerPanCard,fileArr],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        res.redirect("/");
+      }
+    );
+
   } catch (f) {
     res.send(f.message);
   }
@@ -182,21 +170,16 @@ app.listen(process.env.PORT, function () {
 // 	seller_name varchar(255) NOT NULL,
 // 	seller_fname varchar(255) NOT NULL,
 // 	seller_age int NOT NULL,
-// 	seller_house_no varchar(10) NOT NULL,
-// 	seller_addressline1 varchar(50) NOT NULL,
-// 	seller_addressline2 varchar(50),
+// 	seller_address varchar(200) NOT NULL,
 // 	seller_email varchar(50) NOT NULL,
-// 	seller_photo varchar(255),
 // 	seller_aadhar bigint NOT NULL,
 // 	seller_pan varchar(11) NOT NULL,
 // 	buyer_name varchar(255) NOT NULL,
 // 	buyer_fname varchar(255) NOT NULL,
 // 	buyer_age int NOT NULL,
-// 	buyer_house_no varchar(10) NOT NULL,
-// 	buyer_addressline1 varchar(50) NOT NULL,
-// 	buyer_addressline2 varchar(50),
+// 	buyer_address varchar(200) NOT NULL,
 // 	buyer_email varchar(50) NOT NULL,
-// 	buyer_photo varchar(255),
 // 	buyer_aadhar bigint NOT NULL,
-// 	buyer_pan varchar(11) NOT NULL
+// 	buyer_pan varchar(11) NOT NULL,
+//  file_array TEXT[]
 // );
