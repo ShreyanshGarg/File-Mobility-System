@@ -18,7 +18,7 @@
       File Mobility System
       <div class="profile">
         <i class="fa fa-user"></i>
-        <button class="dropbtn">Username</button>
+        <button class="dropbtn"><%=username%></button>
         <div class="dropdown-content">
           <a href="#">Profile</a>
           <a href="#">Log Out</a>
@@ -28,11 +28,9 @@
     <div class="profile-card">
       <img src="/images/profile.jpg" alt="Image" />
       <div class="details">
-        <h2>Name</h2>
-        <p>Designation</p>
-        <p>Username</p>
-        <p>Email Id</p>
-        <p>Mobile No.</p>
+        <h2><%=name%></h2>
+        <p><%=designation%></p>
+        
       </div>
     </div>
     <div class="request-card">
@@ -44,30 +42,27 @@
         </form>
       </div>
       <div class="subcards">
-        <div class="card">
-          <h3>Card 1</h3>
-          <p>Some text</p>
-        </div>
-        <div class="card">
-          <h3>Card 1</h3>
-          <p>Some text</p>
-        </div>
-        <div class="card">
-          <h3>Card 1</h3>
-          <p>Some text</p>
-        </div>
-        <div class="card">
-          <h3>Card 1</h3>
-          <p>Some text</p>
-        </div>
-        <div class="card">
-          <h3>Card 1</h3>
-          <p>Some text</p>
-        </div>
-        <div class="card">
-          <h3>Card 1</h3>
-          <p>Some text</p>
-        </div>
+
+        <!-- console.log(Object.keys(applications).length)   -->
+        <%if(Object.keys(applications).length!=0){applications.forEach((application,i) => { %>
+          
+          <div class="card">
+            <div class="card-inner left">
+              <h3>Application Number: <%=data[i].applicationno%></h3>
+              <% var dd = String(data[i].date.getDate()).padStart(2, '0');%>
+              <%var mm = String(data[i].date.getMonth() + 1).padStart(2, '0');%>
+             <% var yyyy = data[i].date.getFullYear();  %>
+             <%var today = dd + '/' + mm + '/' + yyyy;%>
+              <p>Created On: <%=today%></p>
+            </div>
+            <div class="card-inner right">
+              <p>Buyer Name: <%=data[i].buyername%></p>
+              <p>Seller Name: <%=data[i].sellername%></p>
+
+            </div>
+            
+          </div>
+          <% })} %>
       </div>
     </div>
   </body>
