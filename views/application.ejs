@@ -14,7 +14,7 @@
     <header class="header logo">File Mobility System
         <div class="profile">
             <i class="fa fa-user"></i>
-            <button class="dropbtn">Username</button>
+            <button class="dropbtn"><%=email%></button>
             <div class="dropdown-content">
                 <a href="#">Profile</a>
                 <a href="#">Log Out</a>
@@ -35,24 +35,22 @@
 
 
     <div class="card-wrapper">
+        <%if(Object.keys(applications).length!=0){applications.forEach((application,i) => { %>
+            <% var dd = String(data[i].date.getDate()).padStart(2, '0');%>
+            <%var mm = String(data[i].date.getMonth() + 1).padStart(2, '0');%>
+            <% var yyyy = data[i].date.getFullYear();  %>
+            <%var today = dd + '/' + mm + '/' + yyyy;%>
         <div class="subcards">
-            <div class="card">
-                <h3>Application no</h3>
-                <p>Some text</p>
-              </div>
+            <div class="left">
+                <h3>Application Number : <%=data[i].applicationno%></h3>
+                <p>Status : <%=data[i].status%></p>
             </div>
-        <div class="subcards">
-            <div class="card">
-                <h3>Application no</h3>
-                <p>Some text</p>
-              </div>
+            <div class="right">
+                <p>Date : <%=today%></p>
+                <a href="viewstatus2.html" style="text-decoration: none;" class="btnn btn-primary">View More</a>
+            </div>
         </div>
-        <div class="subcards">
-            <div class="card">
-                <h3>Application no</h3>
-                <p>Some text</p>
-              </div>
-        </div>
+        <% })} %>
     </div>
 
 <form class="application-form" action="/upload" method="post" enctype="multipart/form-data">

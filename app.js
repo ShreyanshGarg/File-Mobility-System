@@ -22,7 +22,12 @@ app.use(
 pool.connect();
 
 // officer obj
-let obj;
+let officerObj;
+
+// user object
+let userObj;
+let formOrStatus=0;
+
 let applicationData = [];
 function LeftPadWithZeros(number, length) {}
 
@@ -64,14 +69,47 @@ app.get("/usersignup", function (req, res) {
 });
 
 app.get("/userdashboard", (req, res) => {
-  res.render("application", { formOrStatus: 0 });
+
+  console.log(userObj);
+  const email = userObj.email;
+  pool.query("select * from customer where email=$1", [email], (err, result) => {
+    if(err) console.log(err);
+    else {
+      let appli = result.rows[0].applicationno;
+      if (appli === {} || appli === null) {
+        appli = {};
+        res.render("application", {
+          formOrStatus: formOrStatus,
+          email: email,
+          applications: appli,
+          data: []
+        });
+      } else {
+        applicationData = [];
+        for(i in appli) {
+          console.log(appli[i]);
+          execute_async(appli[i]);
+        }
+        setTimeout(() => {
+          res.render("application", {
+            formOrStatus: formOrStatus,
+            email: email,
+            applications: appli,
+            data: applicationData
+          });
+        }, 8000);
+      }
+    }
+  })
+
+  // res.render("application", { formOrStatus: formOrStatus });
 });
 
 app.get("/officerdashboard", (req, res) => {
-  console.log(obj);
+  console.log(officerObj);
   pool.query(
     "Select * from officers where username=$1",
-    [obj.username],
+    [officerObj.username],
     (err, result) => {
       if (err) console.log(err);
       else {
@@ -154,14 +192,13 @@ app.post("/usersignup", function (req, res) {
         if (result.rows.length) res.render("usersignup", { danger: "block" });
         else {
           pool.query(
-            "INSERT INTO customer VALUES ($1, $2,$3,$4,$5,$6,$7,$8) RETURNING *",
+            "INSERT INTO customer (customer_id,name,email,password,mobileno,dob,gender) VALUES ($1, $2,$3,$4,$5,$6,$7) RETURNING *",
             [
               uuidv4(),
               firstName,
               email,
               hashedPassword,
               mobileno,
-              "{455555}",
               "1998-10-1",
               "M",
             ],
@@ -179,7 +216,8 @@ app.post("/usersignup", function (req, res) {
 });
 
 app.post("/userlogin", function (req, res) {
-  // console.log(req.body);
+  userObj = req.body;
+  console.log(userObj);
   const { name, email, password } = req.body;
   pool.query(
     "Select * from customer where email=$1",
@@ -187,7 +225,7 @@ app.post("/userlogin", function (req, res) {
     (err, result) => {
       if (err) res.render("userlogin", { danger: "block" });
       else {
-        console.log(result);
+        // console.log(result);
         if (!result.rows.length) res.render("userlogin", { danger: "block" });
         else {
           bcrypt.compare(
@@ -205,7 +243,7 @@ app.post("/userlogin", function (req, res) {
 });
 
 app.post("/officerlogin", function (req, res) {
-  obj = req.body;
+  officerObj = req.body;
   const { username, password } = req.body;
   pool.query(
     "Select * from officers where username=$1",
@@ -326,14 +364,27 @@ app.post("/upload", upload.any(), async function (req, res) {
         if (error) {
           throw error;
         }
-        res.render("application", { formOrStatus: 1 });
+        // res.render("application", { formOrStatus: 1 });
+        formOrStatus=1;
+        res.redirect("/userdashboard");
       }
     );
 
-    // Inseting the application to the first level officer(officer1)
+    // Inserting the application to the first level officer(officer1)
     pool.query(
       "update officers set applications = array_append(applications,$1) where designation=$2",
       [applicationNo, "officer1"],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+      }
+    );
+
+    // Inserting the application to the customer
+    pool.query(
+      "update customer set applicationno = array_append(applicationno,$1) where email=$2",
+      [applicationNo,userObj.email],
       (error, results) => {
         if (error) {
           throw error;
