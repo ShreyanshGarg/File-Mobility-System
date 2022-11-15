@@ -26,7 +26,7 @@ let officerObj;
 
 // user object
 let userObj;
-let formOrStatus=0;
+let formOrStatus = 0;
 
 let applicationData = [];
 function LeftPadWithZeros(number, length) {}
@@ -38,7 +38,7 @@ const execute_async = (data) => {
       [data],
       (err, result) => {
         if (result) {
-          console.log(result.rows[0]);
+          // console.log(result.rows[0]);
           applicationData.push(result.rows[0]);
           // return result.rows[0].applicationno;
         } else console.log(err);
@@ -69,38 +69,41 @@ app.get("/usersignup", function (req, res) {
 });
 
 app.get("/userdashboard", (req, res) => {
-
   console.log(userObj);
   const email = userObj.email;
-  pool.query("select * from customer where email=$1", [email], (err, result) => {
-    if(err) console.log(err);
-    else {
-      let appli = result.rows[0].applicationno;
-      if (appli === {} || appli === null) {
-        appli = {};
-        res.render("application", {
-          formOrStatus: formOrStatus,
-          email: email,
-          applications: appli,
-          data: []
-        });
-      } else {
-        applicationData = [];
-        for(i in appli) {
-          console.log(appli[i]);
-          execute_async(appli[i]);
-        }
-        setTimeout(() => {
+  pool.query(
+    "select * from customer where email=$1",
+    [email],
+    (err, result) => {
+      if (err) console.log(err);
+      else {
+        let appli = result.rows[0].applicationno;
+        if (appli === {} || appli === null) {
+          appli = {};
           res.render("application", {
             formOrStatus: formOrStatus,
             email: email,
             applications: appli,
-            data: applicationData
+            data: [],
           });
-        }, 8000);
+        } else {
+          applicationData = [];
+          for (i in appli) {
+            console.log(appli[i]);
+            execute_async(appli[i]);
+          }
+          setTimeout(() => {
+            res.render("application", {
+              formOrStatus: formOrStatus,
+              email: email,
+              applications: appli,
+              data: applicationData,
+            });
+          }, 8000);
+        }
       }
     }
-  })
+  );
 
   // res.render("application", { formOrStatus: formOrStatus });
 });
@@ -125,9 +128,9 @@ app.get("/officerdashboard", (req, res) => {
             applications: appli,
           });
         } else {
-          console.log("before");
+          // console.log("before");
           for (i in appli) {
-            console.log(appli[i]);
+            // console.log(appli[i]);
             execute_async(appli[i]);
             // setTimeout(() => {
             // console.log(temp);
@@ -150,8 +153,8 @@ app.get("/officerdashboard", (req, res) => {
           // });
 
           setTimeout(() => {
-            console.log("after");
-            console.log(applicationData[0]);
+            // console.log("after");
+            // console.log(applicationData[0]);
             res.render("officer-dashboard", {
               name: result.rows[0].name,
               designation: result.rows[0].designation,
@@ -174,8 +177,15 @@ app.get("/officerdashboard", (req, res) => {
   );
 });
 
+app.post("/officerviewmore", (req, res) => {
+  const result = JSON.parse(req.body.viewmore);
+  if (officerObj === null) res.redirect("/officerlogin");
+  console.log(officerObj);
+  res.render("viewmore.ejs", { user: officerObj, data: result });
+});
+
 app.post("/usersignup", function (req, res) {
-  // console.log(req.body);
+  console.log(req.body);
   const { firstName, lastName, mobileno, email, password } = req.body;
   let hashedPassword = "";
   bcrypt.hash(password, saltRounds, function (err, hash) {
@@ -274,7 +284,7 @@ app.post("/upload", upload.any(), async function (req, res) {
       str = "0" + str;
     }
     applicationNo = parseInt(str);
-    const date = new Date().toLocaleDateString()
+    const date = new Date().toLocaleDateString();
     // console.log(date);
 
     // passing application no as folder name on google drive
@@ -365,7 +375,7 @@ app.post("/upload", upload.any(), async function (req, res) {
           throw error;
         }
         // res.render("application", { formOrStatus: 1 });
-        formOrStatus=1;
+        formOrStatus = 1;
         res.redirect("/userdashboard");
       }
     );
@@ -384,7 +394,7 @@ app.post("/upload", upload.any(), async function (req, res) {
     // Inserting the application to the customer
     pool.query(
       "update customer set applicationno = array_append(applicationno,$1) where email=$2",
-      [applicationNo,userObj.email],
+      [applicationNo, userObj.email],
       (error, results) => {
         if (error) {
           throw error;
@@ -427,7 +437,7 @@ app.listen(process.env.PORT, function () {
 // 	email varchar(255) NOT NULL,
 // 	password varchar(255) NOT NULL,
 // 	mobileno bigint NOT NULL,
-// 	applicationno int[] NOT NULL,
+// 	applicationno int[] ,
 // 	dob date NOT NULL,
 // 	gender varchar(20) NOT NULL
 // );

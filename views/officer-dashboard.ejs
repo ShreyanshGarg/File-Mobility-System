@@ -41,11 +41,12 @@
           <button><i class="fa fa-search"></i></button>
         </form>
       </div>
+      <form class="viewmore-form" action="/officerviewmore" method="post">
       <div class="subcards">
 
         <!-- console.log(Object.keys(applications).length)   -->
         <%if(Object.keys(applications).length!=0){applications.forEach((application,i) => { %>
-          
+    
           <div class="card">
             <div class="card-inner left">
               <h3>Application Number: <%=data[i].applicationno%></h3>
@@ -56,14 +57,18 @@
               <p>Created On: <%=today%></p>
             </div>
             <div class="card-inner right">
+              <div class="text-card">
               <p>Buyer Name: <%=data[i].buyername%></p>
               <p>Seller Name: <%=data[i].sellername%></p>
-
             </div>
-            
+            <div>
+              <button type="submit" class="Viewmore-btn" name="viewmore" value="<%= JSON.stringify(data[i]) %>">View More</button>
+            </div>
+          </div>
           </div>
           <% })} %>
       </div>
+    </form>
     </div>
   </body>
 </html>
