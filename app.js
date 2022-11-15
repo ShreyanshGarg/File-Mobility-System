@@ -177,6 +177,12 @@ app.get("/officerdashboard", (req, res) => {
   );
 });
 
+app.post("/userViewMore", (req, res) => {
+  const result = JSON.parse(req.body.viewmore);
+  if(userObj == null) res.redirect("/userLogin");
+  else res.render("user-viewmore",{email: userObj.email, data: result});
+})
+
 app.post("/officerviewmore", (req, res) => {
   const result = JSON.parse(req.body.viewmore);
   if (officerObj === null) res.redirect("/officerlogin");

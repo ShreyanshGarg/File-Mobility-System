@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/user-viewmore.css">
+    <title>View Status</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">File Mobility System
+            <div class="profile">
+                <i class="fa fa-user"></i>
+                <button class="dropbtn"><%=email%></button>
+                <div class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Log Out</a>
+                </div>
+            </div>
+        </header>
+        <div class="basic-details">
+            <h1>Application No - <%=data.applicationno%></h1>
+            <div id="multi-step-form-container">
+                <!-- Form Steps / Progress Bar -->
+                <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
+                    <!-- Step 1 -->
+                    <li class="form-stepper-active text-center form-stepper-list" step="1">
+                        <a class="mx-2">
+                            <span class="form-stepper-circle">
+                                <span>1</span>
+                            </span>
+                            <div class="label">Step. 1</div>
+                            <div class="label">Application form filled</div>
+                        </a>
+                    </li>
+                    <!-- Step 2 -->
+                    <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+                        <a class="mx-2">
+                            <span class="form-stepper-circle text-muted">
+                                <span>2</span>
+                            </span>
+                            <div class="label text-muted">Step. 2</div>
+                            <div class="label text-muted">Accepted by officer 1</div>
+                        </a>
+                    </li>
+                    <!-- Step 3 -->
+                    <li class="form-stepper-unfinished text-center form-stepper-list" step="3">
+                        <a class="mx-2">
+                            <span class="form-stepper-circle text-muted">
+                                <span>3</span>
+                            </span>
+                            <div class="label text-muted">Step. 3</div>
+                            <div class="label text-muted">Transfer to officer 2</div>
+                        </a>
+                    </li>
+                    <!-- Step 4 -->
+                    <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+                        <a class="mx-2">
+                            <span class="form-stepper-circle text-muted">
+                                <span>4</span>
+                            </span>
+                            <div class="label text-muted">Step. 4</div>
+                            <div class="label text-muted">Request accepeted and verified</div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Step Wise Form Content -->
+                
+            <div class="leftone">
+                <form id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="POST">
+                    <!-- Step 1 Content -->
+                    <section id="step-1" class="form-step">
+                            <h2 class="font-normal">Buyer Details</h2>
+                            <!-- Step 1 input fields -->
+                            <div class="mt-3">
+                                Name <span class="info">: <%=data.buyername%></span>
+                            </div>
+                            <div class="mt-3">
+                                Father's Name <span class="info">: <%=data.buyerfathername%></span>
+                            </div>
+                            <div class="mt-3">
+                                Age <span class="info">: <%=data.buyerage%></span>
+                            </div>
+                            <div class="mt-3">
+                                Complete Address <span class="info">: <%=data.buyeraddress%></span>
+                            </div>
+                            <div class="mt-3">
+                                Email ID <span class="info">: <%=data.buyeremail%></span>
+                            </div>
+                            <div class="mt-3">
+                                AAdhar Card No <span class="info">: <%=data.buyeraadharcard%></span>
+                            </div>
+                            <div class="mt-3">
+                                Pan Card No <span class="info">: <%=data.buyerpancard%></span>
+                            </div>
+                    </section>
+                </form>  
+            </div>
+            <div class="rightone">
+                <form id="userAccountSetupForm" name="userAccountSetupForm" enctype="multipart/form-data" method="POST">
+                    <!-- Step 1 Content -->
+                    <section id="step-1" class="form-step">
+                            <h2 class="font-normal">Seller Details</h2>
+                            <!-- Step 1 input fields -->
+                            <div class="mt-3">
+                                Name <span class="info">: <%=data.sellername%></span>
+                            </div>
+                            <div class="mt-3">
+                                Father's Name <span class="info">: <%=data.sellerfathername%></span>
+                            </div>
+                            <div class="mt-3">
+                                Age <span class="info">: <%=data.sellerage%></span>
+                            </div>
+                            <div class="mt-3">
+                                Complete Address <span class="info">: <%=data.selleraddress%></span>
+                            </div>
+                            <div class="mt-3">
+                                Email ID <span class="info">: <%=data.selleremail%></span>
+                            </div>
+                            <div class="mt-3">
+                                Aadhar Card No <span class="info">: <%=data.selleraadharcard%></span>
+                            </div>
+                            <div class="mt-3">
+                                Pan Card No <span class="info">: <%=data.sellerpancard%></span>
+                            </div>
+                    </section>
+                </form>  
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script src="view-status.js"></script>
+</body>
+</html>

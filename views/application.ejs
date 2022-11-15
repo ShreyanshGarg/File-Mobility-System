@@ -33,25 +33,29 @@
     </div>
     
 
-
-    <div class="card-wrapper">
-        <%if(Object.keys(applications).length!=0){applications.forEach((application,i) => { %>
-            <% var dd = String(data[i].date.getDate()).padStart(2, '0');%>
-            <%var mm = String(data[i].date.getMonth() + 1).padStart(2, '0');%>
-            <% var yyyy = data[i].date.getFullYear();  %>
-            <%var today = dd + '/' + mm + '/' + yyyy;%>
-        <div class="subcards">
-            <div class="left">
-                <h3>Application Number : <%=data[i].applicationno%></h3>
-                <p>Status : <%=data[i].status%></p>
+    <form action="/userViewMore" method="post" style="display: contents;">
+        <div class="card-wrapper">
+            <%if(Object.keys(applications).length!=0){applications.forEach((application,i) => { %>
+                <% var dd = String(data[i].date.getDate()).padStart(2, '0');%>
+                <%var mm = String(data[i].date.getMonth() + 1).padStart(2, '0');%>
+                <% var yyyy = data[i].date.getFullYear();  %>
+                <%var today = dd + '/' + mm + '/' + yyyy;%>
+            <div class="subcards">
+                <div class="left">
+                    <h3>Application Number : <%=data[i].applicationno%></h3>
+                    <p>Status : <%=data[i].status%></p>
+                </div>
+                <div class="right">
+                    <p>Date : <%=today%></p>
+                    <!-- <a href="viewstatus2.html" style="text-decoration: none;" class="btnn btn-primary">View More</a> -->
+                    <div>
+                        <button type="submit" class="btnn btn-primary" name="viewmore" value="<%= JSON.stringify(data[i]) %>">View More</button>
+                    </div>
+                </div>
             </div>
-            <div class="right">
-                <p>Date : <%=today%></p>
-                <a href="viewstatus2.html" style="text-decoration: none;" class="btnn btn-primary">View More</a>
-            </div>
+            <% })} %>
         </div>
-        <% })} %>
-    </div>
+    </form>
 
 <form class="application-form" action="/upload" method="post" enctype="multipart/form-data">
     <!-- Card 1 -->
