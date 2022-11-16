@@ -40,10 +40,11 @@
           
         </div>
       </div>
-
     <div class="request-card">
       <div class="main-body light-bg">
         <div class="pannel-body">
+<form action="/processing" method="post">
+
           <div class="heading">
             <h2>Application No : <%=data.applicationno%></h2>
             <h4>Seller Details</h4>
@@ -374,15 +375,16 @@
           </div>
           <div class="submit">
             <!-- <button type="submit" class="submit-btn">Submit Form</button> -->
-            <button type="submit" class="btn" name="accept">
+            <button type="submit" class="btn" name="accept" value="<%=data.applicationno%>">>
                 Accept </span>
               </button>
-              <button type="submit" class="btn" name="reject">
+              <button type="submit" class="btn" name="reject" value="<%=data.applicationno%>">
                 Reject </span>
               </button>
             </div>
         </div>
       </div>
     </div>
+</form>
   </body>
 </html>

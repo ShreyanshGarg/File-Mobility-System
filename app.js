@@ -128,6 +128,7 @@ app.get("/officerdashboard", (req, res) => {
             applications: appli,
           });
         } else {
+          applicationData = [];
           // console.log("before");
           for (i in appli) {
             // console.log(appli[i]);
@@ -179,9 +180,9 @@ app.get("/officerdashboard", (req, res) => {
 
 app.post("/userViewMore", (req, res) => {
   const result = JSON.parse(req.body.viewmore);
-  if(userObj == null) res.redirect("/userLogin");
-  else res.render("user-viewmore",{email: userObj.email, data: result});
-})
+  if (userObj == null) res.redirect("/userLogin");
+  else res.render("user-viewmore", { email: userObj.email, data: result });
+});
 
 app.post("/officerviewmore", (req, res) => {
   const result = JSON.parse(req.body.viewmore);
@@ -409,6 +410,144 @@ app.post("/upload", upload.any(), async function (req, res) {
     );
   } catch (f) {
     res.send(f.message);
+  }
+});
+
+app.post("/processing", (req, res) => {
+  console.log(req.body);
+  const { username, password } = officerObj;
+  if ("accept" in req.body) {
+    const applicationNo = req.body.accept;
+    pool.query(
+      "Select * from officers where username=$1",
+      [username],
+      (err, result) => {
+        if (err) {
+          res.render("officerlogin", { danger: "block" });
+        } else {
+          // console.log(result);
+          if (!result.rows.length)
+            res.render("officerlogin", { danger: "block" });
+          else if (result.rows[0].password == password) {
+            // Hard - Co..... for officer 1
+            if (result.rows[0].designation == "officer1") {
+              // pop the application from officer 1 array and push to officer 2 array
+              // push status in application for officer 2
+
+              //query for removing from officer 1
+              pool.query(
+                "update officers set applications = array_remove(applications,$1) where username=$2",
+                [applicationNo, username],
+                (error, results) => {
+                  if (error) {
+                    throw error;
+                  }
+                }
+              );
+
+              //query for adding appli in officer 2
+              pool.query(
+                "update officers set applications = array_append(applications,$1) where designation=$2",
+                [applicationNo, "officer2"],
+                (error, results) => {
+                  if (error) {
+                    throw error;
+                  }
+                }
+              );
+
+              // query for updating staus of application
+              pool.query(
+                "update application set status = array_append(status,$1) where applicationno=$2",
+                ["officer2", applicationNo],
+                (error, results) => {
+                  if (error) {
+                    throw error;
+                  } else {
+                    res.redirect("/officerdashboard");
+                  }
+                }
+              );
+            }
+
+            // Hard - Co..... for officer 2
+            if (result.rows[0].designation == "officer2") {
+              //pop the application from officer 2 array
+              //update the status of application as accepted
+
+              //query for removing from officer 2
+              pool.query(
+                "update officers set applications = array_remove(applications,$1) where username=$2",
+                [applicationNo, username],
+                (error, results) => {
+                  if (error) {
+                    throw error;
+                  }
+                }
+              );
+
+              // query for updating staus of application
+              pool.query(
+                "update application set status = array_append(status,$1) where applicationno=$2",
+                ["accepted", applicationNo],
+                (error, results) => {
+                  if (error) {
+                    throw error;
+                  } else {
+                    res.redirect("/officerdashboard");
+                  }
+                }
+              );
+            }
+          } else res.render("officerlogin", { danger: "block" });
+        }
+      }
+    );
+  } else {
+    const applicationNo = req.body.reject;
+
+    // oficer 1 or officer 2 can reject and that application status should be updated as rejected
+    // remove the application from respective officer application array
+
+    // query for updating staus of application
+    pool.query(
+      "update application set status = array_append(status,$1) where applicationno=$2",
+      ["rejected", applicationNo],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+      }
+    );
+
+    pool.query(
+      "Select * from officers where username=$1",
+      [username],
+      (err, result) => {
+        if (err) {
+          res.render("officerlogin", { danger: "block" });
+        } else {
+          // console.log(result);
+          if (!result.rows.length)
+            res.render("officerlogin", { danger: "block" });
+          else if (result.rows[0].password == password) {
+            // Hard - Co..... for officer 1 nd officer 2
+            //query for removing from officer 
+            pool.query(
+              "update officers set applications = array_remove(applications,$1) ",
+              [applicationNo],
+              (error, results) => {
+                if (error) {
+                  throw error;
+                } else {
+                  res.redirect("/officerdashboard");
+                }
+              }
+            );
+          } else res.render("officerlogin", { danger: "block" });
+        }
+      }
+    );
   }
 });
 
