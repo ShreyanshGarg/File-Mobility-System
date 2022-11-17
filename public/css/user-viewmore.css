@@ -307,14 +307,14 @@ ul.form-stepper li a .form-stepper-circle {
   border-radius: 50%;
 }
 .form-stepper .form-stepper-active .form-stepper-circle {
-  background-color: #4361ee !important;
+  /* background-color: #4361ee; */
   color: #fff;
 }
 .form-stepper .form-stepper-active .label {
-  color: #4361ee !important;
+  /* color: #4361ee;  */
 }
 .form-stepper .form-stepper-active .form-stepper-circle:hover {
-  background-color: #4361ee !important;
+  /* background-color: #4361ee !important; */
   color: #fff !important;
 }
 .form-stepper .form-stepper-unfinished .form-stepper-circle {
@@ -355,3 +355,21 @@ ul.form-stepper li a .form-stepper-circle {
 /* .info{
   margin-left: 25%;
 } */
+
+.form-stepper .green-active-text {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.green-active-text {
+  color: green;
+}
+
+.form-stepper .red-active-text {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.red-active-text {
+  color: red;
+}

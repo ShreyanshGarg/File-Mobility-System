@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/user-viewmore.css">
     <title>View Status</title>
+
 </head>
 <body>
     <div class="wrapper">
@@ -21,47 +22,51 @@
         </header>
         <div class="basic-details">
             <h1>Application No - <%=data.applicationno%></h1>
-            <div id="multi-step-form-container">
+            <div id="multi-step-form-container" value="<%=data.status%>">
                 <!-- Form Steps / Progress Bar -->
+                <% console.log(data.status[data.status.length-1]); %>
+                <% if(data.status[data.status.length-1] === 'accepted'){ %>  
+                <% }else if(data.status[data.status.length-1] === 'rejected') {%>
+                    <% console.log("titu"); }%>
                 <ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
                     <!-- Step 1 -->
                     <li class="form-stepper-active text-center form-stepper-list" step="1">
                         <a class="mx-2">
-                            <span class="form-stepper-circle">
+                            <span class="form-stepper-circle" style="background-color:green;">
                                 <span>1</span>
                             </span>
-                            <div class="label">Step. 1</div>
-                            <div class="label">Application form filled</div>
+                            <div class="green-active-text">Step. 1</div>
+                            <div class="green-active-text">Application form filled</div>
                         </a>
                     </li>
                     <!-- Step 2 -->
-                    <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+                    <li class="form-stepper-active text-center form-stepper-list" step="2">
                         <a class="mx-2">
-                            <span class="form-stepper-circle text-muted">
+                            <span class="form-stepper-circle circle-two">
                                 <span>2</span>
                             </span>
-                            <div class="label text-muted">Step. 2</div>
-                            <div class="label text-muted">Accepted by officer 1</div>
+                            <div class="label two">Step. 2</div>
+                            <div class="label two two-text">Accepted by officer 1</div>
                         </a>
                     </li>
                     <!-- Step 3 -->
-                    <li class="form-stepper-unfinished text-center form-stepper-list" step="3">
+                    <li class="form-stepper-active text-center form-stepper-list" step="3">
                         <a class="mx-2">
-                            <span class="form-stepper-circle text-muted">
+                            <span class="form-stepper-circle circle-three">
                                 <span>3</span>
                             </span>
-                            <div class="label text-muted">Step. 3</div>
-                            <div class="label text-muted">Transfer to officer 2</div>
+                            <div class="label three">Step. 3</div>
+                            <div class="label dis3 three three-text" style="display:none;">Transfer to officer 2</div>
                         </a>
                     </li>
                     <!-- Step 4 -->
-                    <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+                    <li class="form-stepper-active text-center form-stepper-list" step="2">
                         <a class="mx-2">
-                            <span class="form-stepper-circle text-muted">
+                            <span class="form-stepper-circle">
                                 <span>4</span>
                             </span>
-                            <div class="label text-muted">Step. 4</div>
-                            <div class="label text-muted">Request accepeted and verified</div>
+                            <div class="label">Step. 4</div>
+                            <div class="label dis4" style="display:none;">Request accepeted and verified</div>
                         </a>
                     </li>
                 </ul>
