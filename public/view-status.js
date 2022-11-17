@@ -131,7 +131,7 @@ if(statArray[statArray.length-1] === 'accepted'){
   document.querySelector(".circle-three").style.backgroundColor="#4361ee";
   const threes = document.querySelectorAll(".three");
   document.querySelector(".dis3").style.display = "block";
-  document.querySelector(".three-text").innerHTML="Request pending at Officer 1";
+  document.querySelector(".three-text").innerHTML="Request pending at Officer 2";
   console.log(threes);
   for(const three of threes) {
     three.style.color="#4361ee";

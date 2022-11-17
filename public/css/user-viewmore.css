@@ -346,6 +346,7 @@ ul.form-stepper li a .form-stepper-circle {
 }
 .basic-details{
   padding: 8% 10% 5% 10%;
+  overflow-x: hidden;
 }
 .buyer{
   padding: 0.5%;
