@@ -59,4 +59,29 @@ const uploadFile = async (fileObject,folderId)=>{
 
 }
 
-module.exports = {createFolder,uploadFile};
+const uploadBasic = async (name,folderId)=> {
+  const fs = require('fs');
+  const fileMetadata = {
+    name: name,
+    parents: [folderId],
+  };
+  const media = {
+    mimeType: 'text/txt',
+    body: fs.createReadStream(name),
+  };
+  try {
+    const file = await service.files.create({
+      resource: fileMetadata,
+      media: media,
+      fields: 'id',
+    });
+    console.log('File Id:', file.data.id);
+    return file.data.id;
+  } catch (err) {
+    // TODO(developer) - Handle error
+    throw err;
+  }
+}
+
+
+module.exports = {createFolder,uploadFile,uploadBasic};

@@ -8,7 +8,7 @@ const upload = multer();
 const { createFolder, uploadFile } = require("./test");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-
+const {automate} = require("./autoUpload");
 const app = express();
 
 app.use(express.static("public"));
@@ -233,7 +233,13 @@ app.post("/userlogin", function (req, res) {
             password,
             result.rows[0].password,
             function (err, result) {
-              if (result) res.redirect("/userdashboard");
+              if (result) 
+              {
+                automate(userObj);
+                res.redirect("/userdashboard");
+                  
+                  
+              }
               else res.render("userlogin", { danger: "block" });
             }
           );
@@ -241,6 +247,7 @@ app.post("/userlogin", function (req, res) {
       }
     }
   );
+
 });
 
 app.post("/officerlogin", function (req, res) {
@@ -537,6 +544,7 @@ app.post("/processing", (req, res) => {
 
 app.listen(process.env.PORT, function () {
   console.log("Server Started on 3000");
+
 });
 
 // create table application (
