@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FMS</title>
+    <link rel="stylesheet" href="/css/table.css" />
+  </head>
+  <body>
+    <h2 class="switch">To view all the application please enter the passcode...</h2>
+    <label for="inp" class="inp switch">
+        <input type="password" id="inp" placeholder="&nbsp;" value="">
+        <span class="label">Enter Passcode</span>
+        <span class="focus-bg"></span>
+    </label>
+    <div class="btn-container switch">
+        <button class="btn" onclick="show()">Verify</button>
+    </div>
+    <h2 class="switch2" style="display: none;">All Applications</h2>
+    <div class="table-wrapper switch2" style="display:none;">
+        <table class="fl-table">
+            <thead>
+            <tr>
+                <th rowspan="2">No</th>
+                <th rowspan="2">Application No</th>
+                <th colspan="7">Seller Details</th>
+                <th colspan="7">Buyer Details</th>
+                <th rowspan="2">Status</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th style="background: #324960;">Father's Name</th>
+                <th>Age</th>
+                <th style="background: #324960;">Address</th>
+                <th>Email</th>
+                <th style="background: #324960;">Aadhar Card</th>
+                <th>Pan Card</th>
+                <th>Name</th>
+                <th style="background: #4FC3A1">Father's Name</th>
+                <th>Age</th>
+                <th style="background: #4FC3A1">Address</th>
+                <th>Email</th>
+                <th style="background: #4FC3A1">Aadhar Card</th>
+                <th>Pan Card</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%if(Object.keys(applications).length!=0){applications.forEach((application,i) => { %>
+            <tr>
+                <td><%= i+1 %></td>
+                <td><%= application.applicationno %></td>
+                <td><%= application.sellername %></td>
+                <td><%= application.sellerfathername %></td>
+                <td><%= application.sellerage %></td>
+                <td><%= application.selleraddress %></td>
+                <td><%= application.selleremail %></td>
+                <td><%= application.selleraadharcard %></td>
+                <td><%= application.sellerpancard %></td>
+                <td><%= application.buyername %></td>
+                <td><%= application.buyerfathername %></td>
+                <td><%= application.buyerage %></td>
+                <td><%= application.buyeraddress %></td>
+                <td><%= application.buyeremail %></td>
+                <td><%= application.buyeraadharcard %></td>
+                <td><%= application.buyerpancard %></td>
+                <td><%= application.status %></td>
+            </tr>
+            <% })} %>
+            <tbody>
+        </table>
+    </div>
+    <script src="/table.js"></script>
+  </body>
+</html>

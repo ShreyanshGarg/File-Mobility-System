@@ -9,6 +9,7 @@ const { createFolder, uploadFile } = require("./test");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const {automate} = require("./autoUpload");
+const nodemailer = require("nodemailer");
 const app = express();
 
 app.use(express.static("public"));
@@ -52,6 +53,25 @@ const execute_async = (data) => {
   }
 };
 
+// nodemailer functions
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+      user: 'tjsg1022@gmail.com',
+      pass: 'jwdssctibiiwmjzm'
+  }
+});
+// const transporter = nodemailer.createTransport({
+//   host: 'smtp.ethereal.email',
+//   port: 587,
+//   auth: {
+//       user: 'noel.gaylord@ethereal.email',
+//       pass: 'zx6Wy6rHmHX8K3Weds'
+//   }
+// });
+
 app.get("/", function (req, res) {
   res.render("landing-page");
 });
@@ -69,7 +89,7 @@ app.get("/usersignup", function (req, res) {
 });
 
 app.get("/userdashboard", (req, res) => {
-  // console.log(userObj);
+  console.log(userObj);
   if (Object.keys(userObj).length === 0) res.redirect("/userlogin");
 
   const email = userObj.email;
@@ -193,13 +213,14 @@ app.post("/usersignup", function (req, res) {
         if (result.rows.length) res.render("usersignup", { danger: "block" });
         else {
           pool.query(
-            "INSERT INTO customer (customer_id,name,email,password,mobileno,dob,gender) VALUES ($1, $2,$3,$4,$5,$6,$7) RETURNING *",
+            "INSERT INTO customer (customer_id,name,email,password,mobileno,applicationno,dob,gender) VALUES ($1, $2,$3,$4,$5,$6,$7,$8) RETURNING *",
             [
               uuidv4(),
               firstName,
               email,
               hashedPassword,
               mobileno,
+              [],
               "1998-10-1",
               "M",
             ],
@@ -207,7 +228,7 @@ app.post("/usersignup", function (req, res) {
               if (error) {
                 throw error;
               }
-              res.redirect("/userdashboard");
+              res.redirect("/userlogin");
             }
           );
         }
@@ -404,8 +425,8 @@ app.post("/upload", upload.any(), async function (req, res) {
   }
 });
 
-app.post("/processing", (req, res) => {
-  // console.log(req.body);
+app.post("/processing", async (req, res) => {
+  console.log(req.body);
   const { username, password } = officerObj;
   if ("accept" in req.body) {
     const applicationNo = req.body.accept;
@@ -459,6 +480,25 @@ app.post("/processing", (req, res) => {
                   }
                 }
               );
+              
+              // send mail to seller that email is accepted by officer 1
+              text = 'Your application no ' + applicationNo + ' is accepted by the first Officer and the request is pending at Officer 2.'
+              console.log(text);
+              let details = {
+                from: "File Mobility System <tjsg1022@gmail.com>",
+                to: req.body.sellerEmail,
+                subject: "Application Status",
+                text: text
+              }
+            
+              console.log("started");
+              transporter.sendMail(details, err => {
+                if(err){
+                  console.log(err);
+                } else {
+                  console.log("Success");
+                }
+              })
             }
 
             // Hard - Co..... for officer 2
@@ -489,6 +529,25 @@ app.post("/processing", (req, res) => {
                   }
                 }
               );
+
+              // send mail to seller that email is accepted by officer 2
+              text = 'Congratulations!!! Your application no ' + applicationNo + ' is accepted by both Officer 1 and Officer 2.';
+              console.log(text);
+              let details = {
+                from: "File Mobility System <tjsg1022@gmail.com>",
+                to: req.body.sellerEmail,
+                subject: "Application Status",
+                text: text
+              }
+            
+              console.log("started");
+              transporter.sendMail(details, err => {
+                if(err){
+                  console.log(err);
+                } else {
+                  console.log("Success");
+                }
+              })
             }
           } else res.render("officerlogin", { danger: "block" });
         }
@@ -499,6 +558,25 @@ app.post("/processing", (req, res) => {
 
     // oficer 1 or officer 2 can reject and that application status should be updated as rejected
     // remove the application from respective officer application array
+
+    // send mail to seller that email is rejected
+    text = 'Sorry to inform you but your application no ' + applicationNo + ' is rejected. Please check all the documents and upload the documents again.'
+    console.log(text);
+    let details = {
+      from: "File Mobility System <tjsg1022@gmail.com>",
+      to: req.body.sellerEmail,
+      subject: "Application Status",
+      text: text
+    }
+  
+    console.log("started");
+    transporter.sendMail(details, err => {
+      if(err){
+        console.log(err);
+      } else {
+        console.log("Success");
+      }
+    })
 
     // query for updating staus of application
     pool.query(
@@ -541,6 +619,18 @@ app.post("/processing", (req, res) => {
     );
   }
 });
+
+app.get("/table", (req,res) => {
+  pool.query("Select * from application", (err,result) => {
+    if(err){
+      console.log(err); 
+    } else {
+      console.log(result.rows);
+      res.render("table", {applications : result.rows});
+    }
+  })
+  
+})
 
 app.listen(process.env.PORT, function () {
   console.log("Server Started on 3000");
