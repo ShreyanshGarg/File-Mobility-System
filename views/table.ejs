@@ -64,7 +64,17 @@
                 <td><%= application.buyeremail %></td>
                 <td><%= application.buyeraadharcard %></td>
                 <td><%= application.buyerpancard %></td>
-                <td><%= application.status %></td>
+       
+                <% if (application.status[application.status.length-1] === 'officer1'){ %>
+                <td>Pending at officer 1</td>
+                <%}else{ if (application.status[application.status.length-1] === 'officer2'){%>
+                <%console.log(application.status[application.status.length-1]) %> 
+                <td>Pending at officer 2</td>
+                <%} else {if (application.status[application.status.length-1] === 'accepted'){%>
+                <td>Accepted</td>
+                <%}else {%> <td>Rejected</td>
+                <%}}}%>
+
             </tr>
             <% })} %>
             <tbody>

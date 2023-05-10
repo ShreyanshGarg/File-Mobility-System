@@ -45,7 +45,8 @@ function openNav() {
       // arr[i].style.display = "block";
       // }
       document.getElementsByClassName("card-wrapper")[0].style.display="none"
-
+      document.getElementsByClassName("main-body")[0].style.overflow="inherit"
+      
   }
   function openStatus(){
 
@@ -60,6 +61,7 @@ function openNav() {
     // arr[i].style.display = "block";
     // }
     document.getElementsByClassName("card-wrapper")[0].style.display="block"
+    document.getElementsByClassName("main-body")[0].style.overflow="auto"
   }
 
 function accepted() {

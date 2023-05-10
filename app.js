@@ -59,8 +59,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-      user: 'tjsg1022@gmail.com',
-      pass: 'jwdssctibiiwmjzm'
+      user: process.env.user,
+      pass: process.env.pass
   }
 });
 // const transporter = nodemailer.createTransport({
@@ -257,9 +257,7 @@ app.post("/userlogin", function (req, res) {
               if (result) 
               {
                 automate(userObj);
-                res.redirect("/userdashboard");
-                  
-                  
+                res.redirect("/userdashboard");                  
               }
               else res.render("userlogin", { danger: "block" });
             }
@@ -482,13 +480,27 @@ app.post("/processing", async (req, res) => {
               );
               
               // send mail to seller that email is accepted by officer 1
-              text = 'Your application no ' + applicationNo + ' is accepted by the first Officer and the request is pending at Officer 2.'
-              console.log(text);
+              let text = `<HTML>
+    <HEAD>
+    </HEAD>
+    <TITLE> FMS </TITLE>
+    <BODY>
+    <h4>Hello ${req.body.sellerName},</h4>
+    <p>Greetings from File Mobility System!</p>
+    
+    <p>We are please to inform you that your application number ${applicationNo} is accepted by officer1</p> 
+    
+    
+    <p>Thanks and Regards,
+    <br>Chief Officer
+    <br>File Mobility System.</p>
+    </BODY>
+    </HTML>`
               let details = {
                 from: "File Mobility System <tjsg1022@gmail.com>",
                 to: req.body.sellerEmail,
                 subject: "Application Status",
-                text: text
+                html: text
               }
             
               console.log("started");
@@ -531,13 +543,27 @@ app.post("/processing", async (req, res) => {
               );
 
               // send mail to seller that email is accepted by officer 2
-              text = 'Congratulations!!! Your application no ' + applicationNo + ' is accepted by both Officer 1 and Officer 2.';
-              console.log(text);
+                 let text = `<HTML>
+    <HEAD>
+    </HEAD>
+    <TITLE> FMS </TITLE>
+    <BODY>
+    <h4>Hello ${req.body.sellerName},</h4>
+    <p>Greetings from File Mobility System!</p>
+    
+    <p>We are please to inform you that your application number ${applicationNo} is accepted by officer1 and officer 2.</p> 
+    
+    
+    <p>Thanks and Regards,
+    <br>Chief Officer
+    <br>File Mobility System.</p>
+    </BODY>
+    </HTML>`
               let details = {
                 from: "File Mobility System <tjsg1022@gmail.com>",
                 to: req.body.sellerEmail,
                 subject: "Application Status",
-                text: text
+                html: text
               }
             
               console.log("started");
@@ -560,13 +586,28 @@ app.post("/processing", async (req, res) => {
     // remove the application from respective officer application array
 
     // send mail to seller that email is rejected
-    text = 'Sorry to inform you but your application no ' + applicationNo + ' is rejected. Please check all the documents and upload the documents again.'
-    console.log(text);
+    let text = `<HTML>
+    <HEAD>
+    </HEAD>
+    <TITLE> FMS </TITLE>
+    <BODY>
+    <h4>Hello ${req.body.sellerName},</h4>
+    <p>Greetings from File Mobility System!</p>
+    
+    <p>We are sorry to inform you that your application number ${applicationNo} is rejected.Please check all the documents and upload the correct documents again.</p> 
+    
+    
+    <p>Thanks and Regards,
+    <br>Chief Officer
+    <br>File Mobility System.</p>
+    </BODY>
+    </HTML>`
+    // console.log(text);
     let details = {
       from: "File Mobility System <tjsg1022@gmail.com>",
       to: req.body.sellerEmail,
       subject: "Application Status",
-      text: text
+      html: text
     }
   
     console.log("started");
