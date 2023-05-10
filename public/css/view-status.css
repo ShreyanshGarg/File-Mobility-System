@@ -156,6 +156,7 @@ body{
     padding-right: 53px;
     padding-top: 39px;
     text-align: center;
+    overflow: auto;
 }
 .left{
   padding: 2%;
