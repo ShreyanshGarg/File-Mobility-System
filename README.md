@@ -5,7 +5,7 @@ File Mobility System is a web application which provides an online document uplo
 ---
 ## Requirements
 
-For development, you will only need Node.js and PostreQL to be installed on your PC.
+For development, you will only need Node.js and PostgreQL to be installed on your PC.
 
 ### Node
 - #### Node installation on Windows
