@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/view-status.css">
+    <title>view status</title>
+</head>
+<body>
+    <div class="wrapper">
+    <header class="header logo">File Mobility System
+        <div class="profile">
+            <i class="fa fa-user"></i>
+            <button class="dropbtn"><%=email%></button>
+            <div class="dropdown-content">
+                <!-- <a href="#">Profile</a> -->
+                <a href="/logoutuser">Log Out</a>
+            </div>
+        </div>
+    </header>
+    <div class="main-body">
+    <button class="openbtn" onclick="openNav()">&#9776;  </button>
+
+
+  
+    <div id="mySidepanel" class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" onclick="openForm()">Application Form</a>
+        <a href="#" onclick="openStatus()">View Status</a>
+    </div>
+    
+
+    <form action="/userViewMore" method="post" style="display: contents;">
+        <div class="card-wrapper">
+            <%if(Object.keys(applications).length!=0){applications.forEach((application,i) => { %>
+                <% var dd = String(data[i].date.getDate()).padStart(2, '0');%>
+                <%var mm = String(data[i].date.getMonth() + 1).padStart(2, '0');%>
+                <% var yyyy = data[i].date.getFullYear();  %>
+                <%var today = dd + '/' + mm + '/' + yyyy;%>
+            <div class="subcards">
+                <div class="left">
+                    <h3>Application Number : <%=data[i].applicationno%></h3>
+                    <p>Status : <%=data[i].status%></p>
+                </div>
+                <div class="right">
+                    <p>Date : <%=today%></p>
+                    <!-- <a href="viewstatus2.html" style="text-decoration: none;" class="btnn btn-primary">View More</a> -->
+                    <div>
+                        <button type="submit" class="btnn btn-primary" name="viewmore" value="<%= JSON.stringify(data[i]) %>">View More</button>
+                    </div>
+                </div>
+            </div>
+            <% })} %>
+        </div>
+    </form>
+
+<form class="application-form" action="/upload" method="post" enctype="multipart/form-data">
+    <!-- Card 1 -->
+    <div class="heading">
+        <h4>Seller Details</h4>
+    </div>
+    <div class="main-body light-bg">
+        <div class="pannel-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Name
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="sellerName" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title" >Father's Name
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="sellerFatherName" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Age
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" name="sellerAge" required>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="email" name="sellerEmail" required>
+                    </div>
+                </div>
+            </div>
+
+            <h5>Address Details</h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">House No
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="sellerHouseNo" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Address Line1
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="sellerAddressLine1" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Address Line2
+                        </label>
+                        <input type="text" name="sellerAddressLine2">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">City
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="sellerCity" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Pincode
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" name="sellerPincode" required>
+                    </div>
+                </div>
+                
+            </div>
+            <h5>Goverment Id</h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Aadhar card Number
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="sellerAadharCard" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Pan Card Number
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="sellerPanCard" required>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row photo-upload">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Passport Size Photo
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="file" name="Files" required  />
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="heading heading-card2">
+        <h4>Buyer Details</h4>
+    </div>
+    <div class="main-body light-bg">
+        <div class="pannel-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Name
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="buyerName" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Father's Name
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="buyerFatherName" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Age
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" name="buyerAge" required>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Email
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="email" name="buyerEmail" required>
+                    </div>
+                </div>
+            </div>
+
+            <h5>Address Details</h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">House No
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="buyerHouseNo" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Address Line1
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="buyerAddressLine1" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Address Line2
+                        </label>
+                        <input type="number" name="buyerAddressLine2">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">City
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="buyerCity" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Pincode
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" name="buyerPincode" required>
+                    </div>
+                </div>
+                
+            </div>
+            <h5>Goverment Id</h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Aadhar card Number
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="buyerAadharCard" required>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Pan Card Number
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" name="buyerPanCard" required>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row photo-upload">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Passport Size Photo
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="file" name="Files" required  />
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+     <!-- Card 3 -->
+     <div class="heading heading-card2">
+        <h4>Documents</h4>
+    </div>
+    <div class="main-body light-bg">
+        <div class="pannel-body">
+            <h5>Aadhar Card Details</h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Aadhar Card Of Seller
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="file" name="Files" required  />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">Aadhar Card Of Buyer
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="file" name="Files" required  />
+                    </div>
+                </div>
+                
+            </div>
+            <h5>PAN Card Details</h5>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">PAN Card Of Buyer
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="file" name="Files" required  />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="field-title">PAN Card Of Seller
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input type="file" name="Files" required  />
+                    </div>
+                </div>
+
+        </div>
+
+        <h5>Documents Details</h5>
+        <p>Upload the chain of property documents. You can upload multiple files for this.</p>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="field-title">Documents Related To Property (Complete Chain)
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="file" name="Files" required multiple />
+                </div>
+            </div>
+
+
+         </div>
+    </div>
+</div>
+<div class="submit">
+<!-- <button type="submit" class="submit-btn">Submit Form</button> -->
+<button type="submit" class="btn">
+    Submit <span class="fas fa-chevron-right"></span>
+  </button>
+</div>
+  </form>
+
+
+</div>
+</div>
+    <script src="/view-status.js"></script>
+    <script>
+        if(<%=formOrStatus%>) openStatus();
+        else openForm();
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+      <input type="file" name="Files" required multiple />
+      <input type="file" name="Files" required  />
+      <input type="file" name="Files" required  />
+      <input type="text" name="Name" placeholder="Name" />
+      <input type="email" name="Email Address" placeholder="Email" required />
+      <input type="text" name="Country" placeholder="Country" />
+      <button type="submit">Submit</button>
+    </form>
+  </body> -->
+
+  <!-- <script>
+    const formElem = document.querySelector("form");
+    formElem.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      console.log("hi");
+      await fetch("/upload", {
+        method: "POST",
+        body: new FormData(formElem),
+      });
+    });
+  </script> -->
+<!-- </html> -->

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Officer Dashboard</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/view-more.css" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      File Mobility System
+      <div class="profile">
+        <i class="fa fa-user"></i>
+        <button class="dropbtn"><%=user.username%></button>
+        <div class="dropdown-content">
+          <!-- <a href="#">Profile</a> -->
+          <a href="/logoutofficer">Log Out</a>
+        </div>
+      </div>
+    </header>
+    <div class="profile-card">
+        <img src="/images/profile.jpg" alt="Image" />
+        <div class="details">
+          <h2><%=user.username%></h2>
+
+          
+        </div>
+      </div>
+    <div class="request-card">
+      <div class="main-body light-bg">
+        <div class="pannel-body">
+<form action="/processing" method="post">
+
+          <div class="heading">
+            <h2>Application No : <%=data.applicationno%></h2>
+            <h4>Seller Details</h4>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >Name
+                  <span class="text-danger">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="sellerName"
+                  value="<%=data.sellername%>"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >Father's Name
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" name="sellerFatherName" value="<%=data.sellerfathername%>" readonly/>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >Age
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="number" name="sellerAge" value="<%=data.sellerage%>" readonly />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >Email
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="email" name="sellerEmail" value="<%=data.selleremail%>" readonly />
+              </div>
+            </div>
+          </div>
+
+          <h5>Address Details</h5>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >House No
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" name="sellerHouseNo" value="<%=data.selleraddress%>" readonly />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >Address Line1
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" name="sellerAddressLine1" value="" readonly />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title">Address Line2 </label>
+                <input type="text" name="sellerAddressLine2" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >City
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" name="sellerCity" value="" readonly />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >Pincode
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="number" name="sellerPincode" value="" readonly />
+              </div>
+            </div>
+          </div>
+          <h5>Goverment Id</h5>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >Aadhar card Number
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" name="sellerAadharCard" value="<%=data.selleraadharcard%>" readonly />
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >Pan Card Number
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" name="sellerPanCard" value="<%=data.sellerpancard%>" readonly />
+              </div>
+            </div>
+          </div>
+          <div class="row photo-upload">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="field-title"
+                  >Passport Size Photo
+                  <span class="text-danger">*</span>
+                </label>
+                <a href="https://drive.google.com/open?id=<%=data.filearr[0]%>" target="_blank">Link</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="heading heading-card2">
+            <h4>Buyer Details</h4>
+          </div>
+          <div class="main-body light-bg">
+            <div class="pannel-body">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Name
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="buyerName" value="<%=data.buyername%>" readonly />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Father's Name
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="buyerFatherName" value="<%=data.buyerfathername%>" readonly />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Age
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="number" name="buyerAge" value="<%=data.buyerage%>" readonly />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Email
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="email" name="buyerEmail" value="<%=data.buyeremail%>" readonly />
+                  </div>
+                </div>
+              </div>
+
+              <h5>Address Details</h5>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >House No
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="buyerHouseNo" value="<%=data.buyeraddress%>" readonly />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Address Line1
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="buyerAddressLine1" value="" readonly />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title">Address Line2 </label>
+                    <input type="number" name="buyerAddressLine2" value="" readonly />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >City
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="buyerCity" value="" readonly />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Pincode
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="number" name="buyerPincode" value="" readonly />
+                  </div>
+                </div>
+              </div>
+              <h5>Goverment Id</h5>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Aadhar card Number
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="buyerAadharCard" value="<%=data.buyeraadharcard%>" readonly />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Pan Card Number
+                      <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="buyerPanCard" value="<%=data.buyerpancard%>" readonly />
+                  </div>
+                </div>
+              </div>
+              <div class="row photo-upload">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Passport Size Photo
+                      <span class="text-danger">*</span>
+                    </label>
+                    <a href="https://drive.google.com/open?id=<%=data.filearr[1]%>" target="_blank">Link</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="heading heading-card2">
+            <h4>Documents</h4>
+          </div>
+          <div class="main-body light-bg">
+            <div class="pannel-body">
+              <h5>Aadhar Card Details</h5>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Aadhar Card Of Seller
+                      <span class="text-danger">*</span>
+                    </label>
+                    <a href="https://drive.google.com/open?id=<%=data.filearr[2]%>" target="_blank">Link</a>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Aadhar Card Of Buyer
+                      <span class="text-danger">*</span>
+                    </label>
+                    <a href="https://drive.google.com/open?id=<%=data.filearr[3]%>" target="_blank">Link</a>
+                  </div>
+                </div>
+              </div>
+              <h5>PAN Card Details</h5>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >PAN Card Of Buyer
+                      <span class="text-danger">*</span>
+                    </label>
+                    <a href="https://drive.google.com/open?id=<%=data.filearr[4]%>" target="_blank">Link</a>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >PAN Card Of Seller
+                      <span class="text-danger">*</span>
+                    </label>
+                    <a href="https://drive.google.com/open?id=<%=data.filearr[5]%>" target="_blank">Link</a>
+                  </div>
+                </div>
+              </div>
+
+              <h5>Documents Details</h5>
+              <p>
+                Upload the chain of property documents. You can upload multiple
+                files for this.
+              </p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="field-title"
+                      >Documents Related To Property (Complete Chain)
+                      <span class="text-danger">*</span>
+                    </label>
+                    <a href="https://drive.google.com/open?id=<%=data.filearr[6]%>" target="_blank">Link</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="submit">
+            <!-- <button type="submit" class="submit-btn">Submit Form</button> -->
+            <button type="submit" class="btn" name="accept" value="<%=data.applicationno%>">
+                Accept </span>
+              </button>
+              <button type="submit" class="btn" name="reject" value="<%=data.applicationno%>">
+                Reject </span>
+              </button>
+            </div>
+        </div>
+      </div>
+    </div>
+</form>
+  </body>
+</html>
